@@ -1,0 +1,11 @@
+<div class="input-group-append" style="margin-left:5px;">
+    <button id="btn21" class="btn elements dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+        <div class="dropdown-menu" aria-labelledby="btn21">
+            {{#List}}
+            <a class="btn dropdown-item" value="{{.}}" >{{.}}</a>
+            {{/List}}
+            {{!-- <a class="btn dropdown-item" id="btn1-2"  type="Class">Class</a>
+            <a class="btn dropdown-item" id="btn1-3"  type="Include">Include</a>
+            <a class="btn dropdown-item" id="btn1-4"  type="All">All</a> --}}
+        </div>
+</div>

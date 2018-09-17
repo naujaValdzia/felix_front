@@ -1,0 +1,108 @@
+<header>
+         <div class="container">
+	        <div class="row page-header">
+	            <div class="col-3">
+	                <h1>Felix</h1>
+	                <h4>XREF analyser</h4>
+	            </div>
+	            
+	            <!-- Buttons block -->
+	            
+	            <div class="col-9 btn-block">
+	                <form id="xrefForm">
+	                    <div class="btn-group d-flex flex-wrap flex-md-nowrap" role="group" id="elements-holder">
+	                        <div class="btn-group" role="group">
+                                <button class="btn elements w-100" id="btn1" type="button">Files</button>
+                                <button class="btn elements w-100" id="btn2" type="button">DB structure</button>
+                                <input class="btn elements w-100" id="btn3" name="bUnused" type="button" value="Unused">
+                                <input class="btn w-100 user-guide-btn" id="btn4" name="buser-guide" 
+	                                type="button" value="User Guide"
+	                                style="background-color: #626060; color:white;">
+                            </div>
+	                    </div>
+
+                        
+	                    
+	                    <input id="inpType" type="hidden" name="type" value="0">
+	                    <input id="inpUnused" type="hidden" name="unused" value="`cUnused`">
+	                    
+	                    <div class="input-group" style="margin-top:12px;">
+						  <input class="form-control" autocomplete="off" name="name" id="inpName"
+                                    placeholder="Please enter name" >
+                                <ul id="autocomplete"></ul>
+                        
+                        {{!-- <div class="input-group-append" style="margin-left:5px;">
+                        <button id="btn21" class="btn elements dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                            <div class="dropdown-menu" aria-labelledby="btn21">
+                                <a class="btn dropdown-item" id="btn1-1" type="Procedure">Procedure</a>
+                                <a class="btn dropdown-item" id="btn1-2"  type="Class">Class</a>
+                                <a class="btn dropdown-item" id="btn1-3"  type="Include">Include</a>
+                                <a class="btn dropdown-item" id="btn1-4"  type="All">All</a>
+                            </div>
+                        </div> --}}
+
+                    {{!-- -- <button id="btn21" class="btn elements dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                            <div  aria-labelledby="btn21"> --}}
+                        <select class="btn-dropdown" id ="small-dropdown">
+                            <option value="Procedure">Procedure</option>
+                            <option value="Class">Class</option>
+                            <option value="Include">Include</option>
+                            <option value="All">All</option>
+                        </select>
+
+                        <select class="btn-dropdown" id = "big-dropdown">
+                            <option value="Access">Access</option>
+                            <option value="Update">Update</option>
+                            <option value="Delete">Delete</option>
+                            <option value="Reference">Reference</option>
+                            <option value="Index">Index</option>
+                            <option value="All">All</option>
+                        </select>
+                     {{!-- </div> --}}
+                        {{!-- <div class="input-group-append" style="margin-left:2px;">
+                              <button id="btn22" class="btn elements dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                              <div class="dropdown-menu" aria-labelledby="btn22">
+                                  <a class="btn dropdown-item" id="btn2-1">ACCESS</a>
+                                  <a class="btn dropdown-item" id="btn2-2">UPDATE</a>
+                                  <a class="btn dropdown-item" id="btn2-3">DELETE</a>
+                                  <a class="btn dropdown-item" id="btn2-4">REFERENCE</a>
+                                  <a class="btn dropdown-item" id="btn2-5">Index</a>
+                                  <a class="btn dropdown-item" id="btn2-6">All</a>
+                              </div>
+                        </div>
+
+                        <div class="input-group-append" style="margin-left:2px;">
+                              <button id="btn23" class="btn elements dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Select</button>
+                              <div class="dropdown-menu" aria-labelledby="btn23">
+                                  <a class="btn dropdown-item" id="btn3-1">Procedures</a>
+                                  <a class="btn dropdown-item" id="btn3-2">Classes</a>
+                                  <a class="btn dropdown-item" id="btn3-3">Includes</a>
+                                  <a class="btn dropdown-item" id="btn3-4">All</a>
+                        </div> --}}
+				    
+                          <div class="w-10" style="margin-left:10px;">
+                                <button id="btnReport" class="btn btn-block pull-right">Report</button>
+                            </div>
+                            <div class="w-10" style="margin-left:10px;">
+                                <button id="btnTree" type="submit" class="btn btn-block pull-right">Tree View</button>
+                            </div>     
+                            
+                            <div id="invFeedbackType" class="invalid-feedback">
+                                Please select type.
+                            </div>
+                            <div id="invFeedbackName" class="invalid-feedback">
+                                Please enter name.
+                            </div>
+                            <div id="invFeedbackBoth" class="invalid-feedback">
+                                Please enter name and select type.
+                            </div>           
+                            {{! <input id="inpDetails" type="hidden" name="details" value="`get-field('details')`">
+                            <input id="inpSystem" type="hidden" name="system" value="`get-field('system')`">
+                            <input id="inpTree" type="hidden" name="tree" value="">
+                            <input id="inpFiles" type="hidden" name="files" value="`get-field('files')`">
+                            <input id="inpDbStruct" type="hidden" name="dbstruct" value="`get-field('dbstruct')`"> }}
+				        </div>
+	                </form>
+	            </div>
+	        </div>
+    </header>
