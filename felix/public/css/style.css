@@ -375,12 +375,7 @@ tr:nth-child(even){background-color: #fcfcfc}
 .btn-dropdown {
 	border-radius: 5px;
 }
-#btn22 {
-    border-radius: 5px;
-}
-#btn23 {
-    border-radius: 5px;
-}
+
 
 .errors {
     display: inline;

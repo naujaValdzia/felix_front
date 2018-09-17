@@ -212,34 +212,90 @@ app.put('/api/system/fileReport', function (req, res) {
     let json = JSON.parse(body);
     
     console.log(options);
-    res.render('report', json);
-  });
-
-  
-app.put('/api/system/fieldReport', function (req, res) {
-  
-      const options = {  
-        url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbField`,
-        method: 'PUT',
-        headers: {
-            'Accept': 'application/json',
-            'Accept-Charset': 'utf-8',
-            'Content-Type': ' application/json; charset=UTF-8'
-        },
-        body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
-        }
-      
-      request(options, function(err, apiResponse, body) {
-        let json = JSON.parse(body);
-        
-        console.log(options);
-        res.render('report', json);
+    res.render('fileReport', json);
   });
 
 
   //let items = progressApi.getErrors(request);
   
 });
+
+app.put('/api/system/fieldReport', function (req, res) {
+  
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbField`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
+    }
+  
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    
+    console.log(options);
+    res.render('fieldReport', json);
+  });
+
+
+  //let items = progressApi.getErrors(request);
+  
+});
+
+app.put('/api/system/unusedReport', function (req, res) {
+  
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/unused/getUnused`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcType": "${req.body.pcType}"}}`
+    }
+  
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    
+    console.log(options);
+    res.render('unusedReport', json);
+  });
+
+
+  //let items = progressApi.getErrors(request);
+  
+});
+
+
+// app.put('/api/system/delete', function (req, res) {
+  
+//   const options = {  
+//     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/delete`,
+//     method: 'PUT',
+//     headers: {
+//         'Accept': 'application/json',
+//         'Accept-Charset': 'utf-8',
+//         'Content-Type': ' application/json; charset=UTF-8'
+//     },
+//     body: `{"request": {"pcSystem": "${req.body.pcSystem}"}}`
+//     }
+  
+//   request(options, function(err, apiResponse, body) {
+//     let json = JSON.parse(body);
+    
+//     console.log(options);
+    
+//   });
+
+
+  //let items = progressApi.getErrors(request);
+  
+// });
+
 
 
 

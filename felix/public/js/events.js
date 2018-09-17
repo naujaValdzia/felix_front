@@ -99,135 +99,11 @@ $(document).ready(() => {
         $('#inpUnused').val('yes'); 
         $('.btn-dropdown').removeClass('activ-drp');
         $('#small-dropdown').show();
-        $('#big-dropdown').addClass('active-drp');
+        $('#small-dropdown').addClass('active-drp');
         $('#big-dropdown').hide();
        
     });
-	// $('.elements').on('click', function(){
-	// 	$('.active').removeClass('active');
-	// 	$(this).addClass('active');
-	// });
-    // $('#btn1-1').on('click', function() {
-    // 	$('#btn1').addClass('active');
-    // 	$('#btn21').addClass('active');
-    //     $('#btn21').html($(this).attr('type'));
-    //     $('#btn21').attr($(this).attr('type'));
-    //     $('#inpType').val('11');
-    // });
-    // $('#btn1-2').on('click', function() {
-    // 	$('#btn1').addClass('active');
-    // 	$('#btn21').addClass('active');
-    // 	$('#btn21').html('Class');
-    //     $('#inpType').val('12');
-    // });
-    // $('#btn1-3').on('click', function() {
-    // 	$('#btn1').addClass('active');
-    // 	$('#btn21').addClass('active');
-    // 	$('#btn21').html('Include');
-    //     $('#inpType').val('13');
-    // });
-    // $('#btn1-4').on('click', function() {
-    // 	$('#btn1').addClass('active');
-    // 	$('#btn21').addClass('active');
-    // 	$('#btn21').html('All');
-    //     $('#inpType').val('14');
-    // });  
-    // $('#btn2-1').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: access');
-    //     $('#inpType').val('21');
-    // });
-    // $('#btn2-2').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: update');
-    //     $('#inpType').val('22');
-    // });
-    // $('#btn2-3').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: delete');
-    //     $('#inpType').val('23');
-    // });
-    // $('#btn2-4').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: reference');
-    //     $('#inpType').val('24');
-    // });
-    // $('#btn2-5').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: index');
-    //     $('#inpType').val('25');
-    // });
-    // $('#btn2-6').on('click', function() {
-    // 	$('#btn2').addClass('active');
-    // 	$('#btn22').addClass('active');
-    // 	$('#btn22').html('DB: all');
-    //     $('#inpType').val('26');
-    // });
-    // $('#btn3-1').on('click', function() {
-    // 	$('#btn3').addClass('active');
-    // 	$('#btn23').addClass('active');
-    // 	$('#btn23').html('Un: procedures');
-    //     $('#inpType').val('31');
-    //     $('#inpUnused').empty();
-    //     $('#inpUnused').val('PROCEDURE');
-    //     $(this).closest('form').submit();
-    // });
-    // $('#btn3-2').on('click', function() {
-    // 	$('#btn3').addClass('active');
-    // 	$('#btn23').addClass('active');
-    // 	$('#btn23').html('Un: classes');
-    //     $('#inpType').val('32');
-    //     $('#inpUnused').empty();
-    //     $('#inpUnused').val('CLASS');
-    //     $(this).closest('form').submit();
-    // });
-    // $('#btn3-3').on('click', function() {
-    // 	$('#btn3').addClass('active');
-    // 	$('#btn23').addClass('active');
-    // 	$('#btn23').html('Un: includes');
-    //     $('#inpType').val('33');
-    //     $('#inpUnused').empty();
-    //     $('#inpUnused').val('INCLUDE');
-    //     $(this).closest('form').submit();
-    // });
-    // $('#btn3-4').on('click', function() {
-    // 	$('#btn3').addClass('active');
-    // 	$('#btn23').addClass('active');
-    // 	$('#btn23').html('Un: all');
-    //     $('#inpType').val('34');
-    //     $('#inpUnused').empty();
-    //     $('#inpUnused').val('*');
-    //     $(this).closest('form').submit();
-    // });
-//    $('#btn3-1').on('click', function() {
-//    	$('#btn3').addClass('active');
-//    	$('#btn23').addClass('active');
-//    	$('#btn23').html('Un:procedures');
-//        $('#inpType').val('31');
-//    });
-//    $('#btn3-2').on('click', function() {
-//    	$('#btn3').addClass('active');
-//    	$('#btn23').addClass('active');
-//    	$('#btn23').html('DB: update');
-//        $('#inpType').val('32');
-//    });
-//    $('#btn3-3').on('click', function() {
-//    	$('#btn3').addClass('active');
-//    	$('#btn23').addClass('active');
-//    	$('#btn23').html('DB: delete');
-//        $('#inpType').val('33');
-//    });
-//    $('#btn3-4').on('click', function() {
-//    	$('#btn3').addClass('active');
-//    	$('#btn23').addClass('active');
-//    	$('#btn23').html('DB: reference');
-//        $('#inpType').val('34');
-//    });
+	
     $('#btn4').on('click', function() {
     	$('.about').hide();
         $('.user-guide').show();
@@ -284,8 +160,8 @@ $(document).ready(() => {
 
     $("#btnReport").on('click', function( event ) {
         let fValid = true;
-        let button = $(".btn, .elements, .w-100, .active").id();
-
+        event.preventDefault();
+        let button = $(".btn, .elements, .w-100, .active").attr('id');
 
         // if ($('#inpName').val() == "") {
         //     $('#invFeedbackName').show();
@@ -299,7 +175,7 @@ $(document).ready(() => {
         if (fValid) {
             $('.invalid-feedback').hide();
             $('#inpDetails').val('no');
-            event.preventDefault();
+           
             if(button = "btn1"){
                 $.ajax({
                         url: "/api/system/fileReport",
@@ -317,14 +193,14 @@ $(document).ready(() => {
                             console.log(xhr);
                         }
                     });
-                }
+                };
                 if(button = "btn2"){
                     $.ajax({
                             url: "/api/system/fieldReport",
                             method: 'PUT',
                             data: {
                                     "pcSystem": $('.systems-select-active').attr("sysName"),
-                                    "pcFileName": $('#inpName').val(),
+                                    "pcDbFieldName": $('#inpName').val(),
                                     "pcType": $('.active-drp').val()
                             },
                             success: function(response) {
@@ -335,14 +211,13 @@ $(document).ready(() => {
                                 console.log(xhr);
                             }
                         });
-                    }
+                    };
                     if(button = "btn3"){
                         $.ajax({
-                                url: "/api/system/UnusedReport",
+                                url: "/api/system/unusedReport",
                                 method: 'PUT',
                                 data: {
                                         "pcSystem": $('.systems-select-active').attr("sysName"),
-                                        "pcFileName": $('#inpName').val(),
                                         "pcType": $('.active-drp').val()
                                 },
                                 success: function(response) {
@@ -353,8 +228,28 @@ $(document).ready(() => {
                                     console.log(xhr);
                                 }
                             });
-                        }
+                        };
         } 
+    });
+
+    // $("#btnDelete").on('click', function( event ) {
+    //     $.ajax({
+    //         url: "/api/system/delete",
+    //         method: 'PUT',
+    //         data: {
+    //                 "pcSystem": $('#sysName').val(),
+    //         },
+    //         success: function(response) {
+    //             $('#content').html(response);
+                
+    //         },
+    //         error: function(xhr) {
+    //             console.log(xhr);
+    //         }
+    //     });
+    // };
+
+
     });
 
     $("#btnTree").click(function( event ) {
