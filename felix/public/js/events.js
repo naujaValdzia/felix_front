@@ -148,22 +148,23 @@ $(document).ready(() => {
         $('#treeTable').hide();
         let fValid = true;
         event.preventDefault();
-        let button = $(".btn, .elements, .w-100, .active").attr('id');
-
+        let whichButton = $(".active").attr('id');
+        
         // if ($('#inpName').val() == "") {
         //     $('#invFeedbackName').show();
         //     fValid = false;
         // };
 
-        if(button = "btn3"){
-            $('#invFeedbackName').hide();
-            fValid = true;
-        }
+        // if(button = "btn3"){
+        //     $('#invFeedbackName').hide();
+        //     fValid = true;
+        // }
         if (fValid) {
             $('.invalid-feedback').hide();
             //$('#inpDetails').val('no');
            
-            if(button = "btn1"){
+            if(whichButton == "btn1"){
+                console.log("111");
                 $.ajax({
                         url: "/api/system/fileReport",
                         method: 'PUT',
@@ -179,8 +180,9 @@ $(document).ready(() => {
                             console.log(xhr);
                         }
                     });
-                };
-            if(button = "btn2"){
+                }
+            else if(whichButton == "btn2"){
+                console.log("222");
                 $.ajax({
                         url: "/api/system/fieldReport",
                         method: 'PUT',
@@ -196,8 +198,9 @@ $(document).ready(() => {
                             console.log(xhr);
                         }
                     });
-                };
-                if(button = "btn3"){
+                }
+                else if(whichButton == "btn3"){
+                    console.log("333");
                     $.ajax({
                             url: "/api/system/unusedReport",
                             method: 'PUT',
@@ -214,16 +217,14 @@ $(document).ready(() => {
                             }
                         });
                     };
-        } 
+        };
     });
 
     $("#btnTree").on('click', function( event ) {
         $('#treeTable').show();
         let fValid = true;
-        event.preventDefault();
-        let button = $(".btn, .elements, .w-100, .active").attr('id');
+        
         if (fValid) {
-            if(button = "btn4"){
                 $.ajax({
                     url: "/api/system/treeViewUsedBy",
                     method: 'PUT',
@@ -232,8 +233,8 @@ $(document).ready(() => {
                         "pcFileName": $('#inpName').val()
                     },
                     success: function(response) {
-                        $('#content').html(response);
-                        console.log(response);
+                        $('#treeTable').html(response);
+                        //console.log(response);
                     },
                     error: function(xhr) {
                         console.log(xhr);
@@ -247,14 +248,14 @@ $(document).ready(() => {
                         "pcFileName": $('#inpName').val()
                     },
                     success: function(response) {
-                        $('#content').html(response);
-                        console.log(response);
+                        $('#treeTable').html(response);
+                        //console.log(response);
                     },
                     error: function(xhr) {
                         console.log(xhr);
                     }
                 });
             };
-        }
+        
     });
 });

@@ -285,7 +285,7 @@ app.put('/api/system/unusedReport', function (req, res) {
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     console.log(options);
-    res.render('treeTable', json);
+    res.render('treeViewUsedBy', json);
   });
   //let items = progressApi.getErrors(request);
 });
@@ -306,7 +306,7 @@ app.put('/api/system/treeViewIsUsing', function (req, res) {
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     console.log(options);
-    res.render('treeTable', json);
+    res.render('treeViewIsUsing', json);
   });
   //let items = progressApi.getErrors(request);
 });
