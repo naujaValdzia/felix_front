@@ -2,12 +2,12 @@ $(document).ready(() => {
     $('.user-guide').hide();
     $('#small-dropdown').hide();
     $('#big-dropdown').hide();
+    $('#treeTable').hide();
         $.ajax({
             url: "api/system",
             method: 'PUT',
             success: function(response) {
                 $('#System-row').html(response);
-                    console.log("veikia");
                     $(".systems-select").click(function() {
                     $(".systems-select-active").removeClass('systems-select-active');
                     $(this).addClass("systems-select-active");
@@ -19,10 +19,6 @@ $(document).ready(() => {
                 console.log(xhr);
             }
         });
-
-        
-        
-        
         
         $('#add').on('click', function() {
             $.ajax({
@@ -36,7 +32,6 @@ $(document).ready(() => {
                 }
             });
         });
-
 
         $('#upd').on('click', function() {
             $.ajax({
@@ -58,23 +53,15 @@ $(document).ready(() => {
                         ]
                     }
                 },
-                
                 success: function(response) {
-                    //$('#content').html(response);
                     console.log(data);
                 },
                 error: function(xhr) {
                     console.log(xhr);
                 }
-            
-            
         });
     });
 
-
-	$('#testai').on('click', function() {
-    	$('#myModal').modal('show');
-    });
 	$('#btn1').on('click', function() {
         $('.btn, .elements, .w-100').removeClass('active');
     	$('#btn1').addClass('active');
@@ -101,7 +88,6 @@ $(document).ready(() => {
         $('#small-dropdown').show();
         $('#small-dropdown').addClass('active-drp');
         $('#big-dropdown').hide();
-       
     });
 	
     $('#btn4').on('click', function() {
@@ -109,7 +95,6 @@ $(document).ready(() => {
         $('.user-guide').show();
         $('.form-holder').empty();
     });
-    
     
     $('.elements').on('click', function(){
     	$('#btn2').html('DB structure');
@@ -119,8 +104,8 @@ $(document).ready(() => {
     });
 
     $(".systems-list").on('click', '.errbtn', function( event ) {
+        $('#treeTable').hide();
         event.preventDefault();
-
         $(".systems-select-active").removeClass('systems-select-active');
         $(this).parents('li').addClass("systems-select-active");
 
@@ -130,7 +115,6 @@ $(document).ready(() => {
             data: {
                 "systemName": $(this).attr("sysName")
             },
-           
             success: function(response) {
                 $('#content').html(response);
             },
@@ -141,6 +125,7 @@ $(document).ready(() => {
     });
 
     $(".systems-list").on('click', '.edit-system', function( event ){ 
+        $('#treeTable').hide();
         event.preventDefault();
         $.ajax({
             url: "api/system/edit",
@@ -153,12 +138,14 @@ $(document).ready(() => {
                 console.log(xhr);
             }
         });
+    });
 
-      
-        
+    $("#btnDelete").on('click', function( event ) {
+        console.log("as cia");
     });
 
     $("#btnReport").on('click', function( event ) {
+        $('#treeTable').hide();
         let fValid = true;
         event.preventDefault();
         let button = $(".btn, .elements, .w-100, .active").attr('id');
@@ -167,14 +154,14 @@ $(document).ready(() => {
         //     $('#invFeedbackName').show();
         //     fValid = false;
         // };
-        // if ($('#inpType').val() == "0") {
-        //     $('#invFeedbackType').show();
-        //     fValid = false;
-        // };
-        // fValid = true;
+
+        if(button = "btn3"){
+            $('#invFeedbackName').hide();
+            fValid = true;
+        }
         if (fValid) {
             $('.invalid-feedback').hide();
-            $('#inpDetails').val('no');
+            //$('#inpDetails').val('no');
            
             if(button = "btn1"){
                 $.ajax({
@@ -187,117 +174,87 @@ $(document).ready(() => {
                         },
                         success: function(response) {
                             $('#content').html(response);
-                            
                         },
                         error: function(xhr) {
                             console.log(xhr);
                         }
                     });
                 };
-                if(button = "btn2"){
+            if(button = "btn2"){
+                $.ajax({
+                        url: "/api/system/fieldReport",
+                        method: 'PUT',
+                        data: {
+                                "pcSystem": $('.systems-select-active').attr("sysName"),
+                                "pcDbFieldName": $('#inpName').val(),
+                                "pcType": $('.active-drp').val()
+                        },
+                        success: function(response) {
+                            $('#content').html(response);
+                        },
+                        error: function(xhr) {
+                            console.log(xhr);
+                        }
+                    });
+                };
+                if(button = "btn3"){
                     $.ajax({
-                            url: "/api/system/fieldReport",
+                            url: "/api/system/unusedReport",
                             method: 'PUT',
                             data: {
                                     "pcSystem": $('.systems-select-active').attr("sysName"),
-                                    "pcDbFieldName": $('#inpName').val(),
                                     "pcType": $('.active-drp').val()
                             },
                             success: function(response) {
-                                $('#content').html(response);
-                                
+                                $('#content').html(response),
+                                    console.log(response);
                             },
                             error: function(xhr) {
                                 console.log(xhr);
                             }
                         });
                     };
-                    if(button = "btn3"){
-                        $.ajax({
-                                url: "/api/system/unusedReport",
-                                method: 'PUT',
-                                data: {
-                                        "pcSystem": $('.systems-select-active').attr("sysName"),
-                                        "pcType": $('.active-drp').val()
-                                },
-                                success: function(response) {
-                                    $('#content').html(response);
-                                    
-                                },
-                                error: function(xhr) {
-                                    console.log(xhr);
-                                }
-                            });
-                        };
         } 
     });
 
-    // $("#btnDelete").on('click', function( event ) {
-    //     $.ajax({
-    //         url: "/api/system/delete",
-    //         method: 'PUT',
-    //         data: {
-    //                 "pcSystem": $('#sysName').val(),
-    //         },
-    //         success: function(response) {
-    //             $('#content').html(response);
-                
-    //         },
-    //         error: function(xhr) {
-    //             console.log(xhr);
-    //         }
-    //     });
-    // };
-
-
-    });
-
-    $("#btnTree").click(function( event ) {
+    $("#btnTree").on('click', function( event ) {
+        $('#treeTable').show();
         let fValid = true;
-        if ($('#inpName').val() == "") {
-            $('#invFeedbackName').show();
-            fValid = false;
-        };
-        if (fValid) {
-        	console.log('Tree button submitted');
-            $('.invalid-feedback').hide();
-            $('#inpTree').val('yes');
-            $("#xrefForm").submit();
-        } else {
         event.preventDefault();
+        let button = $(".btn, .elements, .w-100, .active").attr('id');
+        if (fValid) {
+            if(button = "btn4"){
+                $.ajax({
+                    url: "/api/system/treeViewUsedBy",
+                    method: 'PUT',
+                    data: {
+                        "pcSystem": $('.systems-select-active').attr("sysName"),
+                        "pcFileName": $('#inpName').val()
+                    },
+                    success: function(response) {
+                        $('#content').html(response);
+                        console.log(response);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    }
+                })
+                $.ajax({
+                    url: "/api/system/treeViewIsUsing",
+                    method: 'PUT',
+                    data: {
+                        "pcSystem": $('.systems-select-active').attr("sysName"),
+                        "pcFileName": $('#inpName').val()
+                    },
+                    success: function(response) {
+                        $('#content').html(response);
+                        console.log(response);
+                    },
+                    error: function(xhr) {
+                        console.log(xhr);
+                    }
+                });
+            };
         }
     });
-    
-    
-
-    $(".tree-bucket-entries").click(function() {
-    	$(this).closest('form').submit();
-    });
-
-    /*--------- SCROLL BACK TO TOP ARROW:   ----------*/
-
-    $(window).scroll(function() {
-        if ($(this).scrollTop() >= 200) {
-            $('#return-to-top').fadeIn(200);
-        } else {
-            $('#return-to-top').fadeOut(200);
-        }
-    });
-    $('#return-to-top').click(function() {
-        $('body,html').animate({
-            scrollTop: 0
-        }, 500);
-    });
-
-    /*--------- HIGHLIGHT ACTIVE BUTTON:   ----------*/
-    
-    var header = document.getElementById("elements-holder");
-    var btns = header.getElementsByClassName("elements");
-    for (var i = 0; i < btns.length; i++) {
-      btns[i].addEventListener("click", function() {
-        var current = document.getElementsByClassName("active");
-        current[0].className = current[0].className.replace(" active", "");
-        this.className += " active";
-      });
-    };
 });

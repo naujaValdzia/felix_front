@@ -1,4 +1,3 @@
-
 //packages
 
 const express = require('express');
@@ -12,16 +11,12 @@ const bodyparser = require('body-parser');
 
 class Api{
   constructor(){
-
   }
-
   //Method
   GetForm(req){
 
   }
 }
-
-
 
 // engines and sets
 
@@ -61,7 +56,6 @@ app.listen(3000 , function (){
 var todos = [];
 var List = [];
 
-
 // get info from input
 app.get('/todo', function (request, response) {
   response.render('index', {})
@@ -71,7 +65,6 @@ app.get('/todo', function (request, response) {
 app.put('/api/error', function (req, res) {
   
   const options = {  
-  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/error/getError`,
     method: 'PUT',
     headers: {
@@ -96,11 +89,6 @@ app.put('/api/error', function (req, res) {
   //let items = progressApi.getErrors(request);
   
 });
-
-
-
-
-
 
 app.put('/api/system/edit', function (req, res) {
   
@@ -232,21 +220,16 @@ app.put('/api/system/fieldReport', function (req, res) {
     },
     body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
     }
-  
+
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    
     console.log(options);
     res.render('fieldReport', json);
   });
-
-
   //let items = progressApi.getErrors(request);
-  
 });
 
 app.put('/api/system/unusedReport', function (req, res) {
-  
   const options = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/unused/getUnused`,
     method: 'PUT',
@@ -260,42 +243,70 @@ app.put('/api/system/unusedReport', function (req, res) {
   
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    
     console.log(options);
     res.render('unusedReport', json);
   });
-
-
   //let items = progressApi.getErrors(request);
-  
 });
 
-
-// app.put('/api/system/delete', function (req, res) {
-  
-//   const options = {  
-//     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/delete`,
-//     method: 'PUT',
-//     headers: {
-//         'Accept': 'application/json',
-//         'Accept-Charset': 'utf-8',
-//         'Content-Type': ' application/json; charset=UTF-8'
-//     },
-//     body: `{"request": {"pcSystem": "${req.body.pcSystem}"}}`
-//     }
-  
-//   request(options, function(err, apiResponse, body) {
-//     let json = JSON.parse(body);
-    
-//     console.log(options);
-    
-//   });
-
+ app.put('/api/system/delete', function (req, res) {
+   const options = {  
+     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/delete`,
+     method: 'PUT',
+     headers: {
+         'Accept': 'application/json',
+         'Accept-Charset': 'utf-8',
+         'Content-Type': ' application/json; charset=UTF-8'
+     },
+     body: `{"request": {"pcSystem": "${req.body.pcSystem}"}}`
+     }
+ 
+   request(options, function(err, apiResponse, body) {
+     let json = JSON.parse(body);
+     console.log(options);
+   });
 
   //let items = progressApi.getErrors(request);
+ });
+
+ app.put('/api/system/treeViewUsedBy', function (req, res) {
   
-// });
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    }
 
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    console.log(options);
+    res.render('treeTable', json);
+  });
+  //let items = progressApi.getErrors(request);
+});
 
+app.put('/api/system/treeViewIsUsing', function (req, res) {
+  
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    }
 
-
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    console.log(options);
+    res.render('treeTable', json);
+  });
+  //let items = progressApi.getErrors(request);
+});

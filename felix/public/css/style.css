@@ -316,6 +316,7 @@ td {
 th {
     background-color: #d7e6fa;
     color: black;
+    text-align: center!important;
 }
 
 /* Tooltip container */
@@ -381,3 +382,12 @@ tr:nth-child(even){background-color: #fcfcfc}
     display: inline;
 }
 
+.vTophCenter {
+    vertical-align: top;
+    text-align: left;
+    width:50%;
+}
+
+.searchType {
+    color: #dc3545;
+}
