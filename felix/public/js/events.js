@@ -1,8 +1,6 @@
 $(document).ready(() => {
-    $('.user-guide').hide();
     $('#small-dropdown').hide();
     $('#big-dropdown').hide();
-    $('#treeTable').hide();
         $.ajax({
             url: "api/system",
             method: 'PUT',
@@ -93,7 +91,6 @@ $(document).ready(() => {
     });
 
     $(".systems-list").on('click', '.errbtn', function( event ) {
-        $('#treeTable').hide();
         event.preventDefault();
         $(".systems-select-active").removeClass('systems-select-active');
         $(this).parents('li').addClass("systems-select-active");
@@ -113,8 +110,7 @@ $(document).ready(() => {
         });        
     });
 
-    $(".systems-list").on('click', '.edit-system', function( event ){ 
-        $('#treeTable').hide();
+    $(".systems-list").on('click', '.edit-system', function( event ){
         event.preventDefault();
         $.ajax({
             url: "api/system/edit",
@@ -142,11 +138,10 @@ $(document).ready(() => {
                 console.log(xhr);
             }
         });
+        $(".systems-select-active").hide();
     });
-    
 
     $("#btnReport").on('click', function( event ) {
-        $('#treeTable').hide();
         let fValid = true;
         event.preventDefault();
         let whichButton = $(".active").attr('id');
