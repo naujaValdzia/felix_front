@@ -137,9 +137,21 @@ $(document).ready(() => {
         });
     });
 
-    $("btnDelete1").on('click', function() {
-        console.log("as cia");
+    $(".form-holder").on('click','#btnDelete', function() {
+        event.preventDefault();
+        $.ajax({
+            url: "api/system/delete",
+            method: 'PUT',
+            data: {"pcSystem": $(".systems-select-active").attr("sysName")},
+            success: function(response) {
+                $('#content').html(response);
+            },
+            error: function(xhr) {
+                console.log(xhr);
+            }
+        });
     });
+    
 
     $("#btnReport").on('click', function( event ) {
         $('#treeTable').hide();
@@ -221,11 +233,10 @@ $(document).ready(() => {
         if (fValid) {
                 $.ajax({
                     url: "/api/system/treeView",
-                    method: 'PUT',
                     data: {
                         "pcSystem": $('.systems-select-active').attr("sysName"),
                         "pcFileName": $('#inpName').val()
-                    },
+                },
                     success: function(response) {
                         $('#treeTable').html(response);
                         console.log(response);
@@ -234,7 +245,8 @@ $(document).ready(() => {
                         console.log(xhr);
                     }
                 });
-            };
+            
+            }
         
     });
 });

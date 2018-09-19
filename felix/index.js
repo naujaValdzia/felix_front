@@ -263,12 +263,13 @@ app.put('/api/system/unusedReport', function (req, res) {
    request(options, function(err, apiResponse, body) {
      let json = JSON.parse(body);
      console.log(options);
+     res.render('notification', json);
    });
  });
 
  app.put('/api/system/treeView', function (req, res) {
   
-  const options = {  
+  const options1 = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
     method: 'PUT',
     headers: {
@@ -276,9 +277,20 @@ app.put('/api/system/unusedReport', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    body1: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
     }
-    request(options, function(err, apiResponse, body) {
+
+    const options2 = {  
+      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
+      method: 'PUT',
+      headers: {
+          'Accept': 'application/json',
+          'Accept-Charset': 'utf-8',
+          'Content-Type': ' application/json; charset=UTF-8'
+      },
+      body2: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+      }
+    request(options1, options2, function(err, apiResponse, body) {
       let json = JSON.parse(body);
       console.log(options);
       res.render('treeView', json);
