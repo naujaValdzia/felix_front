@@ -35,22 +35,24 @@ $(document).ready(() => {
 
         $('#upd').on('click', function() {
             $.ajax({
-                url: "api/system/add",
+                url: "http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update",
                 method: 'PUT',
                 data: {
-                    "dssystem": {
-                        "ttsystem": [
-                            {
-                                "systemName": document.getElementById('sysName').value,
-                                "localSourcePath": document.getElementById('sysPath').value,
-                                "systemPropath": document.getElementById('sysPropath').value,
-                                "systemDBparameters": document.getElementById('dbPar').value,
-                                "entryPoints": document.getElementById('entryPoint').value,
-                                "hasErrors": null,
-                                "systemLocation": document.getElementById('sysLocation').value,
-                                "id": null
-                            }
-                        ]
+                    "dsSystem":{
+                        "dssystem": {
+                            "ttsystem": [
+                                {
+                                    "systemName": document.getElementById('sysName').value,
+                                    "localSourcePath": document.getElementById('sysPath').value,
+                                    "systemPropath": document.getElementById('sysPropath').value,
+                                    "systemDBparameters": document.getElementById('dbPar').value,
+                                    "entryPoints": document.getElementById('entryPoint').value,
+                                    "hasErrors": null,
+                                    "systemLocation": document.getElementById('sysLocation').value,
+                                    "id": null
+                                }
+                            ]
+                        }
                     }
                 },
                 success: function(response) {
@@ -90,11 +92,6 @@ $(document).ready(() => {
         $('#big-dropdown').hide();
     });
 	
-    $('#btn4').on('click', function() {
-    	$('.about').hide();
-        $('.user-guide').show();
-        $('.form-holder').empty();
-    });
     
     $('.elements').on('click', function(){
     	$('#btn2').html('DB structure');
@@ -140,7 +137,7 @@ $(document).ready(() => {
         });
     });
 
-    $("#btnDelete").on('click', function( event ) {
+    $("btnDelete1").on('click', function() {
         console.log("as cia");
     });
 
@@ -150,21 +147,20 @@ $(document).ready(() => {
         event.preventDefault();
         let whichButton = $(".active").attr('id');
         
-        // if ($('#inpName').val() == "") {
-        //     $('#invFeedbackName').show();
-        //     fValid = false;
-        // };
+        if ($('#inpName').val() == "") {
+            $('#invFeedbackName').show();
+            fValid = false;
+        };
 
-        // if(button = "btn3"){
-        //     $('#invFeedbackName').hide();
-        //     fValid = true;
-        // }
+        if(whichButton == "btn3"){
+            $('#invFeedbackName').hide();
+            fValid = true;
+        }
         if (fValid) {
             $('.invalid-feedback').hide();
             //$('#inpDetails').val('no');
            
             if(whichButton == "btn1"){
-                console.log("111");
                 $.ajax({
                         url: "/api/system/fileReport",
                         method: 'PUT',
@@ -182,7 +178,6 @@ $(document).ready(() => {
                     });
                 }
             else if(whichButton == "btn2"){
-                console.log("222");
                 $.ajax({
                         url: "/api/system/fieldReport",
                         method: 'PUT',
@@ -200,7 +195,6 @@ $(document).ready(() => {
                     });
                 }
                 else if(whichButton == "btn3"){
-                    console.log("333");
                     $.ajax({
                             url: "/api/system/unusedReport",
                             method: 'PUT',
@@ -226,7 +220,7 @@ $(document).ready(() => {
         
         if (fValid) {
                 $.ajax({
-                    url: "/api/system/treeViewUsedBy",
+                    url: "/api/system/treeView",
                     method: 'PUT',
                     data: {
                         "pcSystem": $('.systems-select-active').attr("sysName"),
@@ -234,22 +228,7 @@ $(document).ready(() => {
                     },
                     success: function(response) {
                         $('#treeTable').html(response);
-                        //console.log(response);
-                    },
-                    error: function(xhr) {
-                        console.log(xhr);
-                    }
-                })
-                $.ajax({
-                    url: "/api/system/treeViewIsUsing",
-                    method: 'PUT',
-                    data: {
-                        "pcSystem": $('.systems-select-active').attr("sysName"),
-                        "pcFileName": $('#inpName').val()
-                    },
-                    success: function(response) {
-                        $('#treeTable').html(response);
-                        //console.log(response);
+                        console.log(response);
                     },
                     error: function(xhr) {
                         console.log(xhr);

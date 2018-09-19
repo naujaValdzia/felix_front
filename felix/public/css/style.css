@@ -27,6 +27,7 @@ body {
 #logo {
     font-weight: bold;
     font-size: 60px;
+    color: black;
 }
 
 h1 {
@@ -374,9 +375,11 @@ tr:nth-child(even){background-color: #fcfcfc}
 }
 
 .btn-dropdown {
-	border-radius: 5px;
+    border-radius: 5px;
+    margin-left:5px;
+    background-color: #343a40;
+    color: white;
 }
-
 
 .errors {
     display: inline;

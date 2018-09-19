@@ -1,6 +1,6 @@
 <div class="form-holder">
     <form>
-        <h3>Update system <span class="refName">{{systemName}}</span> for xref processing</h3>
+        <h3>Add new system for xref processing</h3>
         <label for="sysName">Name:</label>
         <input id="sysName" autocomplete="off" type="text" class="form-control"
             name="sysName" value= "{{systemName}}" placeholder="please enter system name" >
@@ -19,39 +19,9 @@
         <label for="entryPoint">Entry points:</label>
         <input id="entryPoint" autocomplete="off" type="text" class="form-control"
             name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas">
-        
-        <small id="prevEntryPoints" class="form-text text-muted">
-        <strong>EntryPoints in database:</strong> {{entryPoints}}
-        </small>  
-
         <input type="hidden" name="updSystem" value="add">
-
-        <input type="hidden" name="oldName" value= {{systemName}}>
         <div class="button-holder d-flex justify-content-between">
-            <input class="btn btn-dark" id="upd" type="submit" value="Update">
-            <button type="button" class="btn btnDeletae" data-toggle="modal"
-                data-target="#deleteModal" value="">Delete</button>
+            <input class="btn btn-dark" id="upd" type="submit" value="Add">
         </div>
     </form>
-    
-    <!-- Modal of delete confirmation -->
-
-    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="delModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                <h5 class="modal-title" id="delModalLabel">Delete system {{systemName}}</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Delete system {{systemName}} and all it's data from Felix?
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btnDelete" id="btnDelete1">Delete</button>
-            </div>
-        </div>
-    </div>
 </div>  

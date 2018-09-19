@@ -144,7 +144,7 @@ app.put('/api/system', function (req, res) {
 
 
 app.get('/api/system/add', function (req, res) {
-  res.render('editSystem');
+  res.render('createSystem');
 });
 
 app.put('/api/system/add', function (req, res){
@@ -246,7 +246,6 @@ app.put('/api/system/unusedReport', function (req, res) {
     console.log(options);
     res.render('unusedReport', json);
   });
-  //let items = progressApi.getErrors(request);
 });
 
  app.put('/api/system/delete', function (req, res) {
@@ -265,11 +264,9 @@ app.put('/api/system/unusedReport', function (req, res) {
      let json = JSON.parse(body);
      console.log(options);
    });
-
-  //let items = progressApi.getErrors(request);
  });
 
- app.put('/api/system/treeViewUsedBy', function (req, res) {
+ app.put('/api/system/treeView', function (req, res) {
   
   const options = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
@@ -281,32 +278,28 @@ app.put('/api/system/unusedReport', function (req, res) {
     },
     body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
     }
-
-  request(options, function(err, apiResponse, body) {
-    let json = JSON.parse(body);
-    console.log(options);
-    res.render('treeViewUsedBy', json);
-  });
-  //let items = progressApi.getErrors(request);
+    request(options, function(err, apiResponse, body) {
+      let json = JSON.parse(body);
+      console.log(options);
+      res.render('treeView', json);
+    });
 });
 
-app.put('/api/system/treeViewIsUsing', function (req, res) {
-  
+app.put('/api/system/editSystem', function (req, res) {
   const options = {  
-    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update`,
     method: 'PUT',
     headers: {
         'Accept': 'application/json',
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    body: `{"request": { "dsSystem:: { "dssystem": { "ttsystem": [{"pcSystem": "${req.body.pcSystem}","pcType": "${req.body.pcType}"}],}}}}`
     }
-
+  
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     console.log(options);
-    res.render('treeViewIsUsing', json);
+    res.render('editSystem', json);
   });
-  //let items = progressApi.getErrors(request);
 });
