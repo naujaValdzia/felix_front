@@ -1,29 +1,27 @@
 <div id="System-row">
-				{{#response.dsSystem.dssystem.ttsystem}}
-				<li class="list-group-item list-group-item-action systems-select" sysName="{{systemName}}" value='{{systemName}}'>
-					<div class="row">
-						<div class="col-6">             
-							{{systemName}}
-						</div>
+	{{#response.dsSystem.dssystem.ttsystem}}
+		<li class="list-group-item list-group-item-action systems-select" sysName="{{systemName}}" value='{{systemName}}'>
+			<div class="row">
+				<div class="col-6">             
+					{{systemName}}
+				</div>
 
-						<div class="col-3 edit-system-holder">
-							<form class="pull-right">
-								<input class="errors btn btn-danger errbtn" type="button" name="errList"
-									value="error" sysName="{{systemName}}" title="Click to find out where an error occurs">
-								<input type="hidden" name="sysName" value="{{systemName}}">
-							</form>
-						</div>
-														
-						<div class="col-3 edit-system-holder">
-							<form class="pull-right">
-								<input class="btn btn-outline-dark edit-system" type="button" name="updSystem"
-									value="edit" sysName="{{systemName}}" title="Click to edit selected system">
-								<input type="hidden" name="sysName" value="{{systemName}}">
-							</form>
-						</div>
-
-					
-					</div>
-				</li>
-			{{/response.dsSystem.dssystem.ttsystem}}	                            	    
-		</div> 
+				<div class="col-3 edit-system-holder">
+					<form class="pull-right">
+						<input class="errors btn btn-danger errbtn" type="button" name="errList"
+							value="error" sysName="{{systemName}}" title="Click to find out where an error occurs">
+						<input type="hidden" name="sysName" value="{{systemName}}">
+					</form>
+				</div>
+												
+				<div class="col-3 edit-system-holder">
+					<form class="pull-right">
+						<input class="btn btn-outline-dark edit-system" type="button" name="updSystem"
+							value="edit" sysName="{{systemName}}" title="Click to edit selected system">
+						<input type="hidden" name="sysName" value="{{systemName}}">
+					</form>
+				</div>
+			</div>
+		</li>
+	{{/response.dsSystem.dssystem.ttsystem}}	                            	    
+</div> 

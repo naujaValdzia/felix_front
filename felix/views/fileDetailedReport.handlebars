@@ -1,0 +1,17 @@
+{{#response.dsFile.dsFile.ttFile}}
+<div id="tableHolder{{math @index "+" 1}}" style="display:none">
+    <table>
+        <thead>
+            <th>Source Path</th><th>File Name</th><th>Type</th><th>Line</th><th>Info</th>
+        </thead>
+        <tr>
+            <td>{{sourcePath}}</td>
+            <td>{{fileName}}</td>
+            <td>{{type}}</td>
+            <td>{{line}}</td>
+            <td>{{info}}</td>
+        </tr>
+    </table>
+</div>
+{{/response.dsFile.dsFile.ttFile}}
+
