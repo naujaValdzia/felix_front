@@ -22,7 +22,7 @@ $(document).ready(() => {
         
         $('#add').on('click', function() {
             $.ajax({
-                url: "api/system/add",
+                url: "/api/system/edit",
                 method: 'GET',
                 success: function(response) {
                     $('#content').html(response);
@@ -33,30 +33,22 @@ $(document).ready(() => {
             });
         });
 
-        $('#upd').on('click', function() {
+        $(".form-holder").on('click','#upd', function() {
             $.ajax({
-                url: "http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update",
+                url: "/api/system/update",
                 method: 'PUT',
                 data: {
-                    "dsSystem":{
-                        "dssystem": {
-                            "ttsystem": [
-                                {
-                                    "systemName": document.getElementById('sysName').value,
-                                    "localSourcePath": document.getElementById('sysPath').value,
-                                    "systemPropath": document.getElementById('sysPropath').value,
-                                    "systemDBparameters": document.getElementById('dbPar').value,
-                                    "entryPoints": document.getElementById('entryPoint').value,
-                                    "hasErrors": null,
-                                    "systemLocation": document.getElementById('sysLocation').value,
-                                    "id": null
-                                }
-                            ]
-                        }
-                    }
-                },
+                        "systemName": document.getElementById('sysName').value,
+                        "localSourcePath": document.getElementById('sysPath').value,
+                        "systemPropath": document.getElementById('sysPropath').value,
+                        "systemDBparameters": document.getElementById('dbPar').value,
+                        "entryPoints": document.getElementById('entryPoint').value,
+                        "hasErrors": null,
+                        "systemLocation": document.getElementById('sysLocation').value,
+                        "id": null
+                        },
                 success: function(response) {
-                    console.log(data);
+                    $('#content').html(response);
                 },
                 error: function(xhr) {
                     console.log(xhr);

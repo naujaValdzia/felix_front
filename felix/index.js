@@ -116,6 +116,27 @@ app.put('/api/system/edit', function (req, res) {
   
 });
 
+app.put('/api/system/update', function (req, res) {
+  
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"dsSystem": {"dsSystem": {"prods:hasChanges": true,"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${req.body.localSourcePath}","systemPropath": "${req.body.systemPropath}","systemDBparameters": "${req.body.systemDBparameters}","entryPoints": "${req.body.entryPoints}","systemLocation": "${req.body.systemLocation}"}],"prods:before": {}}}}}}`
+  }
+
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    res.render('notification', json);
+  });
+
+  //let items = progressApi.getErrors(request);
+  
+});
 
 // get info from input
 app.put('/api/system', function (req, res) {
@@ -157,7 +178,6 @@ app.put('/api/system/add', function (req, res){
         'Accept-Charset': 'utf-8'
     },
     params:{
-      
                   "systemName": req.body.systemName,
                   "localSourcePath": req.body.localSourcePath,
                   "systemPropath": req.body.systemPropath,
@@ -172,7 +192,6 @@ app.put('/api/system/add', function (req, res){
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     
-    console.log(params);
     
   });
 
