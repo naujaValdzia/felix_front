@@ -164,34 +164,26 @@ app.put('/api/system', function (req, res) {
 
 
 
-app.get('/api/system/add', function (req, res) {
-  res.render('createSystem');
+app.post('/api/system/add', function (req, res) {
+  res.render('createSystem', {});
 });
 
 app.put('/api/system/add', function (req, res){
 
   const options = {  
-    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info`,
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/create`,
     method: 'PUT',
     headers: {
         'Accept': 'application/json',
-        'Accept-Charset': 'utf-8'
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
     },
-    params:{
-                  "systemName": req.body.systemName,
-                  "localSourcePath": req.body.localSourcePath,
-                  "systemPropath": req.body.systemPropath,
-                  "systemDBparameters": req.body.systemDBparameters,
-                  "entryPoints": req.body.entryPoints,
-                  "hasErrors": null,
-                  "systemLocation": req.body.systemLocation,
-                  "id": null
-              }
+    body: `{"request": {"dsSystem": {"dsSystem": {"prods:hasChanges": true,"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${req.body.localSourcePath}","systemPropath": "${req.body.systemPropath}","systemDBparameters": "${req.body.systemDBparameters}","entryPoints": "${req.body.entryPoints}","systemLocation": "${req.body.systemLocation}"}],"prods:before": {}}}}}}`
   };
   
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    
+    res.render('notification', json);
     
   });
 

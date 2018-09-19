@@ -18,19 +18,47 @@ $(document).ready(() => {
             }
         });
         
-        $('#add').on('click', function() {
+        $(".list-group").on('click','#add', function() {
+            console.log("adddddinas");
+            event.preventDefault();
             $.ajax({
-                url: "/api/system/edit",
-                method: 'GET',
+                url: "/api/system/add",
+                method: 'POST',
+            success: function(response) {
+                $('#content').html(response);
+            },
+            error: function(xhr) {
+                console.log(xhr);
+            }
+        });
+    })
+
+
+        $(".form-holder").on('click','#addSys', function() {
+            event.preventDefault();
+            $.ajax({
+                url: "/api/system/add",
+                method: 'PUT',
+                data: {
+                        "systemName": document.getElementById('sysName').value,
+                        "localSourcePath": document.getElementById('sysPath').value,
+                        "systemPropath": document.getElementById('sysPropath').value,
+                        "systemDBparameters": document.getElementById('dbPar').value,
+                        "entryPoints": document.getElementById('entryPoint').value,
+                        "systemLocation": document.getElementById('sysLocation').value,
+                        "id": null
+                        },
                 success: function(response) {
                     $('#content').html(response);
                 },
                 error: function(xhr) {
                     console.log(xhr);
                 }
-            });
         });
+    });
 
+    
+    
         $(".form-holder").on('click','#upd', function() {
             event.preventDefault();
             $.ajax({

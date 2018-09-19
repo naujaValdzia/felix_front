@@ -3,25 +3,25 @@
         <h3>Add new system for xref processing</h3>
         <label for="sysName">Name:</label>
         <input id="sysName" autocomplete="off" type="text" class="form-control"
-            name="sysName" value= "{{systemName}}" placeholder="please enter system name" >
+            name="sysName" value= "" placeholder="please enter system name" >
         <label for="sysPath">Path:</label>
         <input id="sysPath" autocomplete="off" type="text" class="form-control"
-            name="sysPath" value= "{{localSourcePath}}" placeholder="please enter system source path">
+            name="sysPath" value= "" placeholder="please enter system source path">
         <label for="sysPropath">Propath:</label>
         <input id="sysPropath" autocomplete="off" type="text" class="form-control"
-            name="sysPropath" value= "{{systemPropath}}" placeholder="please enter system propath">
+            name="sysPropath" value= "" placeholder="please enter system propath">
         <label for="sysLocation">System Location:</label>
         <input id="sysLocation" autocomplete="off" type="text" class="form-control"
-            name="sysLocation" value= "{{systemLocation}}" placeholder="please enter system location">
+            name="sysLocation" value= "" placeholder="please enter system location">
         <label for="dbPar">Database .df and .st path:</label>
         <input id="dbPar" autocomplete="off" type="text" class="form-control"
-            name="dbPar" value="{{systemDBparameters}}" placeholder="please enter system database parameters">
+            name="dbPar" value="" placeholder="please enter system database parameters">
         <label for="entryPoint">Entry points:</label>
         <input id="entryPoint" autocomplete="off" type="text" class="form-control"
             name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas">
         <input type="hidden" name="updSystem" value="add">
         <div class="button-holder d-flex justify-content-between">
-            <input class="btn btn-dark" id="upd" type="submit" value="Add">
+            <input class="btn btn-dark" id="addSys" type="submit" value="Add">
         </div>
     </form>
 </div>  
