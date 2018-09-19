@@ -34,6 +34,7 @@ $(document).ready(() => {
         });
 
         $(".form-holder").on('click','#upd', function() {
+            event.preventDefault();
             $.ajax({
                 url: "/api/system/update",
                 method: 'PUT',
@@ -43,7 +44,6 @@ $(document).ready(() => {
                         "systemPropath": document.getElementById('sysPropath').value,
                         "systemDBparameters": document.getElementById('dbPar').value,
                         "entryPoints": document.getElementById('entryPoint').value,
-                        "hasErrors": null,
                         "systemLocation": document.getElementById('sysLocation').value,
                         "id": null
                         },
