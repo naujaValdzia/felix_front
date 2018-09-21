@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row page-header">
             <div class="col-3">
-                <h1><a href="http://localhost:3000/todo?" id="logo">Felix</a></h1>
+                <h1><a href="http://localhost:3000/felix" id="logo">Felix</a></h1>
                 <h4>XREF analyser</h4>
             </div>
 
@@ -21,23 +21,23 @@
                     <input id="inpType" type="hidden" name="type" value="0">
                     
                     <div class="input-group" style="margin-top:12px;">
-                        <input class="form-control" autocomplete="off" name="name" id="inpName"
+                        <input class="form-control" name="name" id="inpName"
                                placeholder="Please enter name" >
 
-                    <select class="btn-dropdown" id ="small-dropdown">
+                    <select class="btn-dropdown" id="small-dropdown">
+                        <option value="All">All</option>
                         <option value="Procedure">Procedure</option>
                         <option value="Class">Class</option>
                         <option value="Include">Include</option>
-                        <option value="All">All</option>Select
                     </select>
 
-                    <select class="btn-dropdown" id ="big-dropdown">
+                    <select class="btn-dropdown" id="big-dropdown">
+                        <option value="All">All</option>
                         <option value="Access">Access</option>
                         <option value="Update">Update</option>
                         <option value="Delete">Delete</option>
                         <option value="Reference">Reference</option>
                         <option value="Index">Index</option>
-                        <option value="All">All</option>
                     </select>
 				    
                     <div class="w-10" style="margin-left:10px;">
@@ -52,6 +52,18 @@
                     </div>
                     <div id="invFeedbackName" class="invalid-feedback">
                         Please enter name.
+                    </div>
+                    <div id="invFeedbackSystem" class="invalid-feedback">
+                        Please select system.
+                    </div>
+                    <div id="invFeedbackSystemAndName" class="invalid-feedback">
+                        Please select system and name.
+                    </div>
+                    <div id="invFeedbackNameSystemType" class="invalid-feedback">
+                        Please select name, system and type.
+                    </div>
+                    <div id="invFeedbackTypeAndName" class="invalid-feedback">
+                        Please select name and type.
                     </div>
 			    </div>
             </form>

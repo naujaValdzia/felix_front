@@ -1,2 +1,9 @@
 {{> fileReportShort}}
-{{> fileDetailedReport}}
+<div id="tableHolder {{math @index "+" 1}}" style="display:none">
+    <table>
+        <thead>
+            <th>Source Path</th><th>File Name</th><th>Type</th><th>Line</th><th>Info</th>
+        </thead>
+        {{> fileDetailedReport}}
+    </table>
+</div>

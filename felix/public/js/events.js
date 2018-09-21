@@ -1,25 +1,32 @@
 $(document).ready(() => {
     $('#small-dropdown').hide();
     $('#big-dropdown').hide();
+    $('.errbtn').hide();
         $.ajax({
             url: "api/system",
             method: 'PUT',
             success: function(response) {
                 $('#System-row').html(response);
-                    $(".systems-select").click(function() {
-                    $(".systems-select-active").removeClass('systems-select-active');
-                    $(this).addClass("systems-select-active");
-                    let sysName = $(this).attr("value");
-                    $('#inpSystem').val(sysName);
-                    });
+                
+
+                if ($(".err").attr("hasErr") == "true") {
+                    $('.errbtn').show();
+                }
+                console.log($(".err").attr("hasErr"));
+
+                $(".systems-select").click(function() {
+                $(".systems-select-active").removeClass('systems-select-active');
+                $(this).addClass("systems-select-active");
+                let sysName = $(this).attr("value");
+                $('#inpSystem').val(sysName);
+                })
             },
             error: function(xhr) {
                 console.log(xhr);
             }
         });
-        
+
         $(".list-group").on('click','#add', function() {
-            console.log("adddddinas");
             event.preventDefault();
             $.ajax({
                 url: "/api/system/add",
@@ -56,8 +63,6 @@ $(document).ready(() => {
             });
         });
 
-    
-    
         $(".form-holder").on('click','#upd', function() {
             event.preventDefault();
             $.ajax({
@@ -163,17 +168,81 @@ $(document).ready(() => {
         $("#btnReport").on('click', function( event ) {
             let fValid = true;
             event.preventDefault();
-            let whichButton = $(".active").attr('id');
-            
+            let whichButton = $(".active").attr('id');            
+
+            //Validation
             if ($('#inpName').val() == "") {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').hide();
                 $('#invFeedbackName').show();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
                 fValid = false;
             };
 
-            if(whichButton == "btn3"){
+            if ($('.systems-select-active').attr("sysName") == undefined) {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').show();
+                $('#invFeedbackName').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                fValid = false;
+            };
+
+            if ($('.active-drp').val() == undefined) {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackName').hide();
+                $('#invFeedbackType').show();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                fValid = false;
+            };
+
+            if ($('.active-drp').val() == undefined && $('#inpName').val() == "") {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackName').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').show();
+                $('#invFeedbackNameSystemType').hide();
+                fValid = false;
+            };
+
+            if ($('.systems-select-active').attr("sysName") == undefined && $('#inpName').val() == "") {
+                $('#invFeedbackSystemAndName').show();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackName').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                fValid = false;
+            };
+
+            if ($('.systems-select-active').attr("sysName") == undefined && $('#inpName').val() == "" && $('.active-drp').val() == undefined) {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackName').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').show();
+                fValid = false;
+            };
+
+            if(whichButton == "btn3" && $('.systems-select-active').attr("sysName") != undefined){
                 $('#invFeedbackName').hide();
                 fValid = true;
             }
+
+            if(whichButton == "btn3" && $('.systems-select-active').attr("sysName") == undefined){
+                $('#invFeedbackName').hide();
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').show();
+                fValid = false;
+            }
+            
             if (fValid) {
                 $('.invalid-feedback').hide();
                 if(whichButton == "btn1"){
@@ -230,8 +299,13 @@ $(document).ready(() => {
             };
         });
 
+        $("#btn4").on('click', function( event ) {
+            event.preventDefault();
+            console.log("user guide");
+        });
+
         $("#btnTree").on('click', function( event ) {
-            $('#treeTable').show();
+            event.preventDefault();
             let fValid = true;
             if (fValid) {
                 $.ajax({
@@ -239,9 +313,9 @@ $(document).ready(() => {
                     data: {
                         "pcSystem": $('.systems-select-active').attr("sysName"),
                         "pcFileName": $('#inpName').val()
-                },
+                    },
                     success: function(response) {
-                        $('#treeTable').html(response);
+                        $('#content').html(response);
                         console.log(response);
                     },
                     error: function(xhr) {
@@ -252,3 +326,20 @@ $(document).ready(() => {
         }
     );
 });
+
+function showDetails(btnNum) {
+    var x = document.getElementById("tableHolder " + btnNum);
+    var y = document.getElementsByClassName('visibleDiv');
+    if (x.style.display === "none") {
+        x.style.display = "block";
+        if (y.length >= 1) {
+            for (var i=0; i < y.length; i++) {
+                y[i].style.display = "none";
+                y[i].classList.remove('visibleDiv');
+            }
+        };
+        x.classList.add('visibleDiv');
+    } else {
+        x.style.display = "none";
+    }
+};

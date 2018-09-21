@@ -1,4 +1,12 @@
+<h3>File usage report</h3>
+
 {{#response.dsFileFiltered.dsFileFiltered.ttFileFiltered}}
-<div class="showLine" id="{{math @index "+" 1}}" onclick="showDetails({{math @index "+" 1}})" title="Click for details"><span>{{math @index "+" 1}}. {{compileUnit}} </span></div>
+<div class="showLine" 
+     id="{{math @index "+" 1}}" 
+     onclick="showDetails({{math @index "+" 1}})" 
+     title="Click for details">
+<span>{{math @index "+" 1}}. {{compileUnit}} </span>
 <br>
+</div>
 {{/response.dsFileFiltered.dsFileFiltered.ttFileFiltered}}
+

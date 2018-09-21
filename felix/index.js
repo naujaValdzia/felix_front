@@ -35,6 +35,7 @@ app.use(bodyparser.json());
 
 // static directories
 app.use(express.static('public'));
+app.use(express.static('public/static'));
 
 app.listen(3000 , function (){
   console.log('THE SERVER IS UP AND RUNNING!')
@@ -46,7 +47,7 @@ var todos = [];
 var List = [];
 
 // get info from input
-app.get('/todo', function (request, response) {
+app.get('/felix', function (request, response) {
   response.render('index', {})
 });
 
@@ -160,6 +161,25 @@ app.put('/api/system/fileReport', function (req, res) {
   });
 });
 
+// get info from input
+app.put('/api/system/fileReportDetail', function (req, res) {
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getFileDetail`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcCompileUnit": "loan/LoanUtil.cls", "pcSystem": "indigo","pcType": "class","pcFileName": "stsutil"}}`
+    }
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    console.log(options);
+    res.render('fileDetailedReport', json);
+  });
+});
+
 app.put('/api/system/fieldReport', function (req, res) {
   const options = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbField`,
@@ -212,34 +232,6 @@ app.put('/api/system/unusedReport', function (req, res) {
    });
  });
 
- app.put('/api/system/treeView', function (req, res) {
-  const options1 = {  
-    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
-    method: 'PUT',
-    headers: {
-        'Accept': 'application/json',
-        'Accept-Charset': 'utf-8',
-        'Content-Type': ' application/json; charset=UTF-8'
-    },
-    body1: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
-    }
-    const options2 = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
-      method: 'PUT',
-      headers: {
-          'Accept': 'application/json',
-          'Accept-Charset': 'utf-8',
-          'Content-Type': ' application/json; charset=UTF-8'
-      },
-      body2: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
-      }
-    request(options1, options2, function(err, apiResponse, body) {
-      let json = JSON.parse(body);
-      console.log(options);
-      res.render('treeView', json);
-    });
-});
-
 app.put('/api/system/editSystem', function (req, res) {
   const options = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update`,
@@ -254,5 +246,37 @@ app.put('/api/system/editSystem', function (req, res) {
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     res.render('editSystem', json);
+  });
+});
+
+app.put('/api/system/treeView', function (req, res) {
+  const options1 = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body1: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    }
+  request(options1, function(err, apiResponse, body) {
+    let json = JSON.parse(body1);
+    console.log(options1);
+  })
+  const options2 = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body2: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+    }
+  request(options2, function(err, apiResponse, body) {
+    let json = JSON.parse(body2);
+    console.log(options2);
+    res.render('treeView', json);
   });
 });

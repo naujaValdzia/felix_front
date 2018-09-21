@@ -1,6 +1,6 @@
 <div id="System-row">
 	{{#response.dsSystem.dssystem.ttsystem}}
-		<li class="list-group-item list-group-item-action systems-select" sysName="{{systemName}}" value='{{systemName}}'>
+		<li class="list-group-item list-group-item-action systems-select err" hasErr={{hasErrors}} sysName="{{systemName}}" value='{{systemName}}'>
 			<div class="row">
 				<div class="col-6">             
 					{{systemName}}
@@ -24,4 +24,4 @@
 			</div>
 		</li>
 	{{/response.dsSystem.dssystem.ttsystem}}	                            	    
-</div> 
+</div>
