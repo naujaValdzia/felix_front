@@ -1,7 +1,6 @@
-{{#response.dsTree.dsTree.ttTree}}
-<span class="searchType">
-    {{type}}
-</span> 
+{{#usedBy.dsTree.ttTree}}
+<span>{{math @index "+" 1}}. <span class="searchType">{{type}}
+</span>
 {{filename}}<br>
 <b>Information: </b>{{info}}<br>
-{{/response.dsTree.dsTree.ttTree}}
+{{/usedBy.dsTree.ttTree}}

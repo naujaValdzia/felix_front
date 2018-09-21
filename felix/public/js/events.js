@@ -1,18 +1,15 @@
 $(document).ready(() => {
     $('#small-dropdown').hide();
     $('#big-dropdown').hide();
-    $('.errbtn').hide();
         $.ajax({
             url: "api/system",
             method: 'PUT',
             success: function(response) {
                 $('#System-row').html(response);
                 
+                $('.errbtn').hide();
 
-                if ($(".err").attr("hasErr") == "true") {
-                    $('.errbtn').show();
-                }
-                console.log($(".err").attr("hasErr"));
+                $('[hasErr="true"]').find('.errbtn').show();
 
                 $(".systems-select").click(function() {
                 $(".systems-select-active").removeClass('systems-select-active');
@@ -53,7 +50,7 @@ $(document).ready(() => {
                         "entryPoints": document.getElementById('entryPoint').value,
                         "systemLocation": document.getElementById('sysLocation').value,
                         "id": null
-                        },
+                },
                 success: function(response) {
                     $('#content').html(response);
                 },
@@ -301,15 +298,53 @@ $(document).ready(() => {
 
         $("#btn4").on('click', function( event ) {
             event.preventDefault();
-            console.log("user guide");
+            $.ajax({
+                url: "/api/system/userGuide",
+                success: function(response) {
+                    $('#content').html(response);
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            })
+
         });
 
         $("#btnTree").on('click', function( event ) {
             event.preventDefault();
             let fValid = true;
+
+            if ($('#inpName').val() == "") {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                $('#invFeedbackName').show();
+                fValid = false;
+            };
+            if ($('.systems-select-active').attr("sysName") == undefined) {
+                $('#invFeedbackSystemAndName').hide();
+                $('#invFeedbackSystem').show();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                $('#invFeedbackName').hide();
+                fValid = false;
+            };
+            if ($('.systems-select-active').attr("sysName") == undefined && $('#inpName').val() == "") {
+                $('#invFeedbackSystemAndName').show();
+                $('#invFeedbackSystem').hide();
+                $('#invFeedbackType').hide();
+                $('#invFeedbackTypeAndName').hide();
+                $('#invFeedbackNameSystemType').hide();
+                $('#invFeedbackName').hide();
+                fValid = false;
+            };
             if (fValid) {
                 $.ajax({
                     url: "/api/system/treeView",
+                    method: 'PUT',
                     data: {
                         "pcSystem": $('.systems-select-active').attr("sysName"),
                         "pcFileName": $('#inpName').val()
@@ -327,19 +362,11 @@ $(document).ready(() => {
     );
 });
 
-function showDetails(btnNum) {
-    var x = document.getElementById("tableHolder " + btnNum);
-    var y = document.getElementsByClassName('visibleDiv');
-    if (x.style.display === "none") {
-        x.style.display = "block";
-        if (y.length >= 1) {
-            for (var i=0; i < y.length; i++) {
-                y[i].style.display = "none";
-                y[i].classList.remove('visibleDiv');
-            }
-        };
-        x.classList.add('visibleDiv');
-    } else {
-        x.style.display = "none";
-    }
+function validationErrors() {
+    $('#invFeedbackSystemAndName').hide();
+    $('#invFeedbackSystem').hide();
+    $('#invFeedbackName').hide();
+    $('#invFeedbackType').hide();
+    $('#invFeedbackTypeAndName').hide();
+    $('#invFeedbackNameSystemType').hide();
 };

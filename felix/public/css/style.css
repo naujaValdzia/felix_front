@@ -78,10 +78,6 @@ td {
     border-right: 1px dotted darkgrey;
 }
 
-.t-linecounter {
-	max-width: 30px!important;
-}
-
 .t-high {
 	width: 50%;
 }
@@ -117,41 +113,8 @@ td {
 	padding: 5px!important;
 }
 
-
-#autocomplete, .mouse-over-list, .mouse-over-list-active {
-    position: absolute;
-    background-color: white;
-    transform: translate(50px, -5px);
-    margin: 0px;
-    box-shadow: 2px 3px 5px #888888;
-    z-index: 1;
-}
-
-#autocomplete {
-    width: calc(65% - 90px);
-    max-height: 50vh;
-}
-
-#autocomplete lh, .mouse-over-list lh, .mouse-over-list-active lh {
-    font-size: 12px;
-    font-style: italic;
-    margin: 2px 5px;
-}
-
 .mouse-over-list-active lh {
 	font-weight: bold;
-}
-
-.autocomplete-list-items {
-    list-style-type: none;
-    font-size: 14px;
-    margin: 2px 5px;
-    cursor: pointer;
-}
-
-.autocomplete-list-items:hover {
-    background-color: grey;
-    color: white;
 }
 
 .active, .btn:hover {
@@ -196,10 +159,6 @@ td {
 	border: 1px solid #d7e6fa;
 }
 
-.user-guide {
-	display: none;
-}
-
 .user-guide img {
 	width: 100%;
 	box-shadow: 5px 5px 20px 5px grey;
@@ -215,76 +174,6 @@ td {
 	margin-top: 25px;
 }
 
-.tree-bucket {
-	text-align: center;
-	margin: 50px 0px;
-}
-
-.tree-bucket form {
-	display: inline-block;
-	margin-top: 10px!important;
-}
-
-.tree-bucket-entries {
-	display: block;
-	cursor: pointer;
-}
-
-.tree-bucket-entries:hover {
-	text-decoration: underline dotted;
-} 
-
-.tree-bucket-entries-active {
-    text-decoration: underline dotted;
-    font-weight: bold;
-}
-
-.tree-bucket-entries-main {
-    box-shadow: 2px 2px 2px 2px #4691f9;
-    
-}
-
-.tree-bucket-entries-type {
-	font-size: 10px;
-	font-style: italic;
-	color: #4691f9;
-}
-
-
-#return-to-top {
-    position: fixed;
-    bottom: 20px;
-    background: rgba(100, 100, 100, 0.5);
-    width: 50px;
-    height: 50px;
-    display: block;
-    text-decoration: none;
-    -webkit-border-radius: 35px;
-    -moz-border-radius: 35px;
-    border-radius: 35px;
-    display: none;
-    transition: all 0.3s ease;
-    transform: rotate(270deg);
-}
-
-#return-to-top span {
-    color: #fff;
-    margin: 0;
-    position: relative;
-    left: 17px;
-    top: 10px;
-    font-size: 19px;
-    transition: all 0.3s ease;
-}
-
-#return-to-top:hover {
-    background: rgba(250, 235, 215, 1);
-}
-
-#return-to-top:hover span {
-    color: #fff;
-}
-
 #source-width {
 	width: 50px;
 }
@@ -297,18 +186,6 @@ td {
 	display: block;
 }
 
-.spinner-wrapper {
-	height: 30vh;
-	width: 100%;
-	text-align: center;
-	
-}
-
-.spinner {
-	margin: 120px 200px;
-	width: 45px;
-	height: 45px;
-}
 .showLine {
     display: inline;
     cursor: pointer;
@@ -318,53 +195,6 @@ th {
     background-color: #d7e6fa;
     color: black;
     text-align: center!important;
-}
-
-/* Tooltip container */
-.tooltip {
-    position: relative;
-    display: inline-block;
-    border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
-}
-
-/* Tooltip text */
-.tooltip .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: #555;
-    color: #fff;
-    text-align: center;
-    padding: 5px 0;
-    border-radius: 6px;
-
-    /* Position the tooltip text */
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -60px;
-
-    /* Fade in tooltip */
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-/* Tooltip arrow */
-.tooltip .tooltiptext::after {
-    content: "";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: #555 transparent transparent transparent;
-}
-
-/* Show the tooltip text when you mouse over the tooltip container */
-.tooltip:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
 }
 
 tr:nth-child(even){background-color: #fcfcfc}
@@ -393,4 +223,10 @@ tr:nth-child(even){background-color: #fcfcfc}
 
 .searchType {
     color: #dc3545;
+}
+
+.notifications {
+    width: 50px; 
+    height: 50px; 
+    margin-right: 15px;
 }

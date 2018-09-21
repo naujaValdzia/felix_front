@@ -33,7 +33,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyparser.urlencoded({extended: false}));
 app.use(bodyparser.json());
 
-// static directories
+// static directories$ bower install bootstrap-sweetalert
 app.use(express.static('public'));
 app.use(express.static('public/static'));
 
@@ -49,6 +49,10 @@ var List = [];
 // get info from input
 app.get('/felix', function (request, response) {
   response.render('index', {})
+});
+
+app.get('/api/system/userGuide', function (req, res) {
+  res.render('userGuide');
 });
 
 // get info from input
@@ -88,7 +92,13 @@ app.put('/api/system/edit', function (req, res) {
 });
 
 app.put('/api/system/update', function (req, res) {
-  const options = {  
+  let sysPropath = req.body.systemPropath.replace(/\\/g, "/");
+  let sysPath = req.body.localSourcePath.replace(/\\/g, "/");
+  let dbPar = req.body.systemDBparameters.replace(/\\/g, "/");
+  let sysLocation = req.body.systemLocation.replace(/\\/g, "/");
+  let entryPoints = req.body.entryPoints.replace(/\\/g, "/");
+
+  const options = {
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update`,
     method: 'PUT',
     headers: {
@@ -96,8 +106,10 @@ app.put('/api/system/update', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"dsSystem": {"dsSystem": {"prods:hasChanges": true,"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${req.body.localSourcePath}","systemPropath": "${req.body.systemPropath}","systemDBparameters": "${req.body.systemDBparameters}","entryPoints": "${req.body.entryPoints}","systemLocation": "${req.body.systemLocation}"}],"prods:before": {}}}}}}`
+    body: `{"request": {"dsSystem": {"dsSystem": {"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}}`
   }
+
+  console.log(JSON.stringify(options))
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
     res.render('notification', json);
@@ -127,6 +139,13 @@ app.post('/api/system/add', function (req, res) {
 });
 
 app.put('/api/system/add', function (req, res){
+  let sysName = req.body.systemName.replace(/\\/g, "/");
+  let sysPropath = req.body.systemPropath.replace(/\\/g, "/");
+  let sysPath = req.body.localSourcePath.replace(/\\/g, "/");
+  let dbPar = req.body.systemDBparameters.replace(/\\/g, "/");
+  let sysLocation = req.body.systemLocation.replace(/\\/g, "/");
+  let entryPoints = req.body.entryPoints.replace(/\\/g, "/");
+
   const options = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/create`,
     method: 'PUT',
@@ -135,7 +154,7 @@ app.put('/api/system/add', function (req, res){
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"dsSystem": {"dsSystem": {"prods:hasChanges": true,"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${req.body.localSourcePath}","systemPropath": "${req.body.systemPropath}","systemDBparameters": "${req.body.systemDBparameters}","entryPoints": "${req.body.entryPoints}","systemLocation": "${req.body.systemLocation}"}],"prods:before": {}}}}}}`
+    body: `{"request": {"dsSystem": {"dsSystem": {"ttsystem": [{"systemName": "${sysName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}`
   };
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
@@ -249,8 +268,9 @@ app.put('/api/system/editSystem', function (req, res) {
   });
 });
 
+
 app.put('/api/system/treeView', function (req, res) {
-  const options1 = {  
+  const optionsUsedBy = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
     method: 'PUT',
     headers: {
@@ -258,13 +278,10 @@ app.put('/api/system/treeView', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body1: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
-    }
-  request(options1, function(err, apiResponse, body) {
-    let json = JSON.parse(body1);
-    console.log(options1);
-  })
-  const options2 = {  
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+  };
+
+  const optionsIsUsing = {  
     url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
     method: 'PUT',
     headers: {
@@ -272,11 +289,23 @@ app.put('/api/system/treeView', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body2: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
-    }
-  request(options2, function(err, apiResponse, body) {
-    let json = JSON.parse(body2);
-    console.log(options2);
-    res.render('treeView', json);
-  });
+    body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+  };
+
+  
+  request(optionsUsedBy, function(err, apiResponse, body) {
+    let json1 = JSON.parse(body);
+
+    request(optionsIsUsing, function(err, apiResponse, body) {
+      let json = JSON.parse(body);
+      
+      let usedBy = { usedBy: json1.response.dsTree };
+      let isUsing = { isUsing: json.response.dsTree };
+
+      let test = Object.assign(usedBy, isUsing);
+            
+      res.render('treeView', test);
+    });
+    
+  })
 });

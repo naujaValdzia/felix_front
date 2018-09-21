@@ -2,23 +2,23 @@
     <form>
         <h3>Add new system for xref processing</h3>
         <label for="sysName">Name:</label>
-        <input id="sysName" autocomplete="off" type="text" class="form-control"
-            name="sysName" value= "" placeholder="please enter system name, up to 50 characters" size="80" maxlength="50"> 
+        <input id="sysName" type="text" class="form-control"
+            name="sysName" placeholder="please enter system name, up to 50 characters" size="80" maxlength="50"> 
         <label for="sysPath">Path:</label>
-        <input id="sysPath" autocomplete="off" type="text" class="form-control"
-            name="sysPath" value= "" placeholder="please enter system source path">
+        <textarea id="sysPath" type="text" class="form-control"
+            name="sysPath" placeholder="please enter system source path"></textarea>
         <label for="sysPropath">Propath:</label>
-        <input id="sysPropath" autocomplete="off" type="text" class="form-control"
-            name="sysPropath" value= "" placeholder="please enter system propath">
+        <textarea id="sysPropath" type="text" class="form-control"
+            name="sysPropath" placeholder="please enter system propath"></textarea>
         <label for="sysLocation">System Location:</label>
-        <input id="sysLocation" autocomplete="off" type="text" class="form-control"
-            name="sysLocation" value= "" placeholder="please enter system location">
+        <textarea id="sysLocation" type="text" class="form-control"
+            name="sysLocation" placeholder="please enter system location"></textarea>
         <label for="dbPar">Database .df and .st path:</label>
-        <input id="dbPar" autocomplete="off" type="text" class="form-control"
-            name="dbPar" value="" placeholder="please enter system database parameters">
+        <textarea id="dbPar" type="text" class="form-control"
+            name="dbPar" placeholder="please enter system database parameters"></textarea>
         <label for="entryPoint">Entry points:</label>
-        <input id="entryPoint" autocomplete="off" type="text" class="form-control"
-            name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas">
+        <textarea id="entryPoint" type="text" class="form-control"
+            name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas"></textarea>
         <input type="hidden" name="updSystem" value="add">
         <div class="button-holder d-flex justify-content-between">
             <input class="btn btn-dark" id="addSys" type="submit" value="Add">
