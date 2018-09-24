@@ -2,11 +2,14 @@
 
 {{#response.dsFileFiltered.dsFileFiltered.ttFileFiltered}}
 <div class="showLine" 
-     id="{{math @index "+" 1}}" 
-     onclick="showDetails({{math @index "+" 1}})" 
-     title="Click for details">
-<span>{{math @index "+" 1}}. {{compileUnit}} </span>
-<br>
+     id="line{{math @index "+" 1}}"
+     title="Click for details" value={{compileUnit}} tableNum="#tableHolder{{math @index "+" 1}}">
+    <span>{{math @index "+" 1}}. {{compileUnit}} </span>
+    <br>
+    <div class="table-holder table-select" id="tableHolder{{math @index "+" 1}}">
+        {{> fileDetailedReport}}
+        <br>
+    </div>
 </div>
 {{/response.dsFileFiltered.dsFileFiltered.ttFileFiltered}}
 

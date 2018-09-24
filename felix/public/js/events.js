@@ -162,10 +162,61 @@ $(document).ready(() => {
             $(".systems-select-active").hide();
         });
 
+
+        $(".form-holder").on('click', '.showLine', function( event ) {
+            event.preventDefault();
+            let id = $(this).attr('id');
+            let tableId = $(this).attr('tableNum');
+
+            $.ajax({
+                url: "/api/system/fileReportDetail",
+                method: 'PUT',
+                data: {
+                        "pcCompileUnit": document.getElementById(id).getAttribute("value"),
+                        "pcSystem": $('.systems-select-active').attr("sysName"),
+                        "pcType": $('.active-drp').val(),
+                        "pcFileName": $('#inpName').val()
+                },
+                success: function(response) {
+                    $(tableId).html(response);
+                    $('.table-holder').hide();
+                    $(tableId).show();
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
+        });
+
+        $(".form-holder").on('click', '.showFieldLine', function( event ) {
+            event.preventDefault();
+            let id = $(this).attr('id');
+            let tableId = $(this).attr('tableNum');
+
+            $.ajax({
+                url: "/api/system/fieldDetailedReport",
+                method: 'PUT',
+                data: {
+                        "pcCompileUnit": document.getElementById(id).getAttribute("value"),
+                        "pcSystem": $('.systems-select-active').attr("sysName"),
+                        "pcDbFieldName": $('#inpName').val(),
+                        "pcType": $('.active-drp').val()
+                },
+                success: function(response) {
+                    $(tableId).html(response);
+                    $('.table-holder').hide();
+                    $(tableId).show();
+                },
+                error: function(xhr) {
+                    console.log(xhr);
+                }
+            });
+        });
+
         $("#btnReport").on('click', function( event ) {
             let fValid = true;
             event.preventDefault();
-            let whichButton = $(".active").attr('id');            
+            let whichButton = $(".active").attr('id');
 
             //Validation
             if ($('#inpName').val() == "") {
@@ -253,6 +304,7 @@ $(document).ready(() => {
                         },
                         success: function(response) {
                             $('#content').html(response);
+                            $('.table-holder').hide();
                         },
                         error: function(xhr) {
                             console.log(xhr);
@@ -270,6 +322,7 @@ $(document).ready(() => {
                         },
                         success: function(response) {
                             $('#content').html(response);
+                            $('.table-holder').hide();
                         },
                         error: function(xhr) {
                             console.log(xhr);
@@ -285,8 +338,7 @@ $(document).ready(() => {
                                 "pcType": $('.active-drp').val()
                         },
                         success: function(response) {
-                            $('#content').html(response),
-                                console.log(response);
+                            $('#content').html(response)
                         },
                         error: function(xhr) {
                             console.log(xhr);
