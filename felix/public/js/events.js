@@ -48,7 +48,7 @@ $(document).ready(() => {
                         "systemPropath": document.getElementById('sysPropath').value,
                         "systemDBparameters": document.getElementById('dbPar').value,
                         "entryPoints": document.getElementById('entryPoint').value,
-                        "systemLocation": document.getElementById('sysLocation').value,
+                        "systemLocation": "",
                         "id": null
                 },
                 success: function(response) {
@@ -71,7 +71,7 @@ $(document).ready(() => {
                         "systemPropath": document.getElementById('sysPropath').value,
                         "systemDBparameters": document.getElementById('dbPar').value,
                         "entryPoints": document.getElementById('entryPoint').value,
-                        "systemLocation": document.getElementById('sysLocation').value,
+                        "systemLocation": "",
                         "id": null
                         },
                 success: function(response) {
