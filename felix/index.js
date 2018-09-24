@@ -86,7 +86,7 @@ app.put('/api/system/edit', function (req, res) {
   };
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    let system = json.response.dsSystem.dssystem.ttsystem[0];
+    let system = json.response.dsSystem.dsSystem.ttSystem[0];
     res.render('editSystem', system);
   });
 });
@@ -106,7 +106,7 @@ app.put('/api/system/update', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"dsSystem": {"dsSystem": {"ttsystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}}`
+    body: `{"request": {"dsSystem": {"dsSystem": {"ttSystem": [{"systemName": "${req.body.systemName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}}`
   }
 
   console.log(JSON.stringify(options))
@@ -154,7 +154,7 @@ app.put('/api/system/add', function (req, res){
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"dsSystem": {"dsSystem": {"ttsystem": [{"systemName": "${sysName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}`
+    body: `{"request": {"dsSystem": {"dsSystem": {"ttSystem": [{"systemName": "${sysName}","localSourcePath": "${sysPath}","systemPropath": "${sysPropath}","systemDBparameters": "${dbPar}","entryPoints": "${entryPoints}","systemLocation": "${sysLocation}"}]}}}}`
   };
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);

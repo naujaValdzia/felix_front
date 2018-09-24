@@ -8,11 +8,11 @@
         <th>Error message</th>
     </thead>
 
-    {{#response.dsError.dserror.tterror}}
+    {{#response.dsError.dsError.ttError}}
         <tr>
             <td>{{math @index "+" 1}}</td>
             <td>{{filePath}}</td>
             <td>{{errorMessage}}</td>
         </tr>
-    {{/response.dsError.dserror.tterror}}
+    {{/response.dsError.dsError.ttError}}
  </table>
