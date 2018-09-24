@@ -1,4 +1,15 @@
 <h3>Field usage report</h3>
-{{#response.dsDbFieldFiltered.dsDbFieldFiltered.ttDbFieldFiltered}}
-<span>{{math @index "+" 1}}. {{compileUnit}} </span><br>
-{{/response.dsDbFieldFiltered.dsDbFieldFiltered.ttDbFieldFiltered}}
+
+{{#response.dsDbFieldDto.dsDbFieldDto.ttDbFieldDto}}
+<div class="showFieldLine" 
+     id="line{{math @index "+" 1}}"
+     title="Click for details" value={{compileUnit}} tableNum="#tableHolder{{math @index "+" 1}}">
+    <span>{{math @index "+" 1}}. {{compileUnit}} </span>
+    <br>
+    <div class="table-holder table-select" id="tableHolder{{math @index "+" 1}}">
+        {{> fieldDetailedReport}}
+        <br>
+    </div>
+</div>
+{{/response.dsDbFieldDto.dsDbFieldDto.ttDbFieldDto}}
+

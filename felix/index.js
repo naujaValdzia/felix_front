@@ -190,11 +190,10 @@ app.put('/api/system/fileReportDetail', function (req, res) {
         'Accept-Charset': 'utf-8',
         'Content-Type': ' application/json; charset=UTF-8'
     },
-    body: `{"request": {"pcCompileUnit": "loan/LoanUtil.cls", "pcSystem": "indigo","pcType": "class","pcFileName": "stsutil"}}`
+    body: `{"request": {"pcCompileUnit": "${req.body.pcCompileUnit}", "pcSystem": "${req.body.pcSystem}","pcType": "${req.body.pcType}","pcFileName": "${req.body.pcFileName}"}}`
     }
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    console.log(options);
     res.render('fileDetailedReport', json);
   });
 });
@@ -212,8 +211,24 @@ app.put('/api/system/fieldReport', function (req, res) {
     }
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    console.log(options);
     res.render('fieldReport', json);
+  });
+});
+
+app.put('/api/system/fieldDetailedReport', function (req, res) {
+  const options = {  
+    url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbFieldDetail`,
+    method: 'PUT',
+    headers: {
+        'Accept': 'application/json',
+        'Accept-Charset': 'utf-8',
+        'Content-Type': ' application/json; charset=UTF-8'
+    },
+    body: `{"request": {"pcCompileUnit": "${req.body.pcCompileUnit}", "pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
+    }
+  request(options, function(err, apiResponse, body) {
+    let json = JSON.parse(body);
+    res.render('fieldDetailedReport', json);
   });
 });
 
