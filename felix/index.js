@@ -41,11 +41,6 @@ app.listen(3000 , function (){
   console.log('THE SERVER IS UP AND RUNNING!')
 });
 
-// empty arrays to push info into
-
-var todos = [];
-var List = [];
-
 // get info from input
 app.get('/felix', function (request, response) {
   response.render('index', {})
