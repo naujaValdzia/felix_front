@@ -1,6 +1,6 @@
 <h3>Field usage report</h3>
 
-{{#response.dsDbFieldDto.dsDbFieldDto.ttDbFieldDto}}
+{{#each response.dsDbFieldDto.dsDbFieldDto.ttDbFieldDto}}
 <div class="showFieldLine" 
      id="line{{math @index "+" 1}}"
      title="Click for details" value={{compileUnit}} tableNum="#tableHolder{{math @index "+" 1}}">
@@ -11,5 +11,12 @@
         <br>
     </div>
 </div>
-{{/response.dsDbFieldDto.dsDbFieldDto.ttDbFieldDto}}
+{{else}}
 
+<div class="unable-to-find">
+    <img class="unable-to-find-image" src="felix.gif" alt="Felix">
+    <br>
+    <h5>Unable to generate report with matching criteria</h5>
+</div>
+
+{{/each}}

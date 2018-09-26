@@ -1,38 +1,105 @@
 <div class="user-guide">
-	                    <h3>System window overview</h3>
-	                    <img class="user-guide-img" src="how_to_one.png" alt="Picture of how-to">
-	                        <h5>1. Add new system.<h5>
-		                    <p>Add new system for XREF analysis. You are prompted to input system name, 
-		                        path to source files and propath, as well as database configuration data.</p>
-                            <h5>2. Select from available (added) systems.<h5>
-                            <p>Section "Available systems indicates systems or programs with XREF 
-                                information prepared for analysis.</p>
-                            <p>Error button shows that some files not compiled (press to show error codes)</p>
-                            <h5>3. Choose a category.<h5>
-                            <p>Choose a category of the element you are searching: file, 
-                                a database field or unused elements.</p>
-                            <h5>4. Insert name.<h5>
-                            <p>Insert a name of the element you are searching. The more correct and specific name 
-                                 you enter, the better search results are displayed.</p>
-                            <h5>5. Choose a type.<h5>
-                            <p>Choose a type of the element you are searching: a procedure, a class, an include, 
-                                a database field ("access" or "update" ...), index or unused elements.</p>
-                            <h5>6. Choose Report or tree view.<h5>
-                            <p>Felix XREF analyser outputs Report and Tree view:
-                                "Report" shows all ABL elements which are using the searched element 
-                                "Tree View" shows all ABL elements that searched element is using and all ABL elements which are used by seached element. </p>
-                        <h3>Example of adding system</h3>
-	                    <img class="user-guide-img" src="how_to_seven.png" alt="Picture of how-to">
-	                    <h3>Example of editing system</h3>
-	                    <img class="user-guide-img" src="how_to_two.png" alt="Picture of how-to">
-	                    <h3>Example of file report</h3>
-	                    <img class="user-guide-img" src="how_to_three.png" alt="Picture of how-to">
-                        <h5>Click on element to see detailed report<h5>
-                        <h3>Example of DB field report</h3>
-	                    <img class="user-guide-img" src="how_to_six.png" alt="Picture of how-to">
-                        <h5>Click on element to see detailed report<h5>
-	                    <h3>Example of "Tree View"</h3>
-                        <img class="user-guide-img" src="how_to_four.png" alt="Picture of how-to">
-                        <h3>Example of unused files</h3>
-                        <img class="user-guide-img" src="how_to_five.png" alt="Picture of how-to">
-	                </div>
+    <img class="user-guide-img" src="how_to_one.png" alt="Picture of how-to"/>
+    <h4 style="margin-top: 4vh; text-align: center;">In order to start using Felix, - follow the steps below:</h4>
+    <br>
+
+    <table>
+        <tr class="vMiddlehLeft">
+            <td style="width: 25vh;"><h6>1. Add new system<h6></td>
+            <td><p>Add new system for XREF analysis. Fill all the required data: system name, 
+                path to local source files, propath, entry points and database configuration data.</p></td>
+        </tr>
+        
+        <tr class="vMiddlehLeft">
+            <td><h6>2. Select from available systems<h6></td>
+            <td><p>Section "Available systems" indicates systems available for Xref analysis.
+                <br><img src="errorButton.png"/> button apprears if any compilation errors occurr during Xref compilation process. 
+                    You can click on the button to see list of errors.</p></td>
+        </tr>
+
+        <tr class="vMiddlehLeft">
+            <td><h6>3. Choose category<h6></td>
+            <td><p>Choose a category of the element you are searching: file, database field or files marked as unused.</p></td>
+        </tr>
+
+        <tr class="vMiddlehLeft">
+            <td><h6>4. Insert name<h6></td>
+            <td><p>Insert name of the element you are searching. The more correct and specific name 
+                   you enter, the better search results you get.</p></td>
+        </tr>
+
+        <tr class="vMiddlehLeft">
+            <td><h6>5. Choose a type<h6></td>
+            <td><p>Choose a type of the element you are searching: procedure, class, include, 
+                   database field ("access" or "update" ...), index or files marked as unused.</p></td>
+        </tr>
+
+        <tr class="vMiddlehLeft">
+            <td><h6>6. Click report or tree view button<h6></td>
+            <td><p>Felix XREF analyser outputs Report or Tree view:
+            "Report" shows all ABL elements which are using the searched element 
+            "Tree View" shows all ABL elements that searched element is using and all ABL 
+            elements which are used by seached element. </p></td>
+        </tr>
+    </table>
+
+    <div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+            <img class="d-block w-100" src="how_to_seven.png" alt="First slide">
+                <div class="carousel-caption">
+                    <h5>Add system window</h5>
+                    <p>An example of add system window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="how_to_two.png" alt="Second slide">
+                <div class="carousel-caption">
+                    <h5>Edit system window</h5>
+                    <p>An example of edit system window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="how_to_three.png" alt="Third slide">
+                <div class="carousel-caption">
+                    <h5>File report</h5>
+                    <p>An example of file report window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="how_to_six.png" alt="Fourth slide">
+                <div class="carousel-caption">
+                    <h5>DB field report</h5>
+                    <p>An example of DB field report window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="how_to_five.png" alt="Fifth slide">
+                <div class="carousel-caption">
+                    <h5>Unused files report</h5>
+                    <p>An example of unused files report window</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+            <img class="d-block w-100" src="how_to_four.png" alt="Sixth slide">
+                <div class="carousel-caption">
+                    <h5>Tree View report</h5>
+                    <p>An example of tree view report window</p>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>

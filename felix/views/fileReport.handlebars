@@ -1,9 +1,22 @@
-{{> fileReportShort}}
-<div id="tableHolder {{math @index "+" 1}}" style="display:none">
-    <table>
-        <thead>
-            <th>Source Path</th><th>File Name</th><th>Type</th><th>Line</th><th>Info</th>
-        </thead>
+<h3>File usage report</h3>
+
+{{#each response.dsFileDto.dsFileDto.ttFileDto}}
+<div class="showLine" 
+     id="line{{math @index "+" 1}}"
+     title="Click for details" value={{compileUnit}} tableNum="#tableHolder{{math @index "+" 1}}">
+    <span>{{math @index "+" 1}}. {{compileUnit}} </span>
+    <br>
+    <div class="table-holder table-select" id="tableHolder{{math @index "+" 1}}">
         {{> fileDetailedReport}}
-    </table>
+        <br>
+    </div>
 </div>
+{{else}}
+
+<div class="unable-to-find">
+    <img class="unable-to-find-image" src="felix.gif" alt="Felix">
+    <br>
+    <h5>Unable to generate report with matching criteria</h5>
+</div>
+
+{{/each}}

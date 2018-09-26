@@ -1,5 +1,13 @@
 <h3>Based on your entry points, Felix found these files as unused:</h3>
 
-{{#response.dsUnused.dsUnused.ttUnused}}
+{{#each response.dsUnused.dsUnused.ttUnused}}
 <span>{{math @index "+" 1}}. {{fileName}}</span><br>
-{{/response.dsUnused.dsUnused.ttUnused}}
+{{else}}
+
+<div class="unable-to-find">
+    <img class="unable-to-find-image" src="felix.gif" alt="Felix">
+    <br>
+    <h5>Unable to generate report with matching criteria</h5>
+</div>
+
+{{/each}}

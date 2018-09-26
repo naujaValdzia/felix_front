@@ -1,5 +1,11 @@
-{{#isUsing.dsTree.ttTree}}
+{{#each isUsing.dsTree.ttTree}}
 <span>{{math @index "+" 1}}. <span class="searchType">{{type}}
 </span>
 {{filename}}<br>
-{{/isUsing.dsTree.ttTree}}
+{{else}}
+
+<div class="unable-to-find-tree">
+    <p>Felix found nothing</p>
+</div>
+
+{{/each}}

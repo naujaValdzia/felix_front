@@ -61,7 +61,7 @@ table {
     -moz-border-radius: 6px;
     border-radius: 6px;
     width: 100%;
-    border: 1px solid #343a40;
+    border: 1px solid #ddd;
 }
 
 th, td {
@@ -162,10 +162,10 @@ td {
 	border: 1px solid #d7e6fa;
 }
 
-.user-guide img {
-	width: 100%;
-	box-shadow: 5px 5px 20px 5px grey;
-	margin: 25px 0px;
+.user-guide-img {
+	width: 100%!important;
+	box-shadow: 2px 2px 20px 2px grey;
+    margin: 25px 0px;
 }
 
 .about p, .user-guide p {
@@ -200,7 +200,7 @@ th {
     text-align: center!important;
 }
 
-tr:nth-child(even){background-color: #faf9f9!important}
+tr:nth-child(even){background-color: #faf9f9ef!important}
 
 .btnDelete {
 	background-color: #4691f9;
@@ -224,6 +224,11 @@ tr:nth-child(even){background-color: #faf9f9!important}
     width:50%;
 }
 
+.vMiddlehLeft {
+    vertical-align: middle;
+    text-align: left;
+}
+
 .searchType {
     color: #dc3545;
 }
@@ -237,6 +242,34 @@ tr:nth-child(even){background-color: #faf9f9!important}
 .showFieldLine {
     display: inline;
     cursor: pointer;
+}
+
+.unable-to-find-image {
+    height: 150px;
+    width: 200px;
+}
+
+.unable-to-find {
+    margin-top: 15vh;
+    text-align: center;
+}
+
+.unable-to-find-tree {
+    text-align: center;
+}
+
+.input-group {
+    height: 33px;
+}
+
+div .carousel-caption {
+    color: #dc3545;
+}
+
+#carouselIndicators {
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    box-shadow: none!important;
 }
 
 tr{

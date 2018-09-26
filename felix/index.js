@@ -171,7 +171,7 @@ app.put('/api/system/fileReport', function (req, res) {
     }
   request(options, function(err, apiResponse, body) {
     let json = JSON.parse(body);
-    res.render('fileReportShort', json);
+    res.render('fileReport', json);
   });
 });
 

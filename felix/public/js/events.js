@@ -262,6 +262,7 @@ $(document).ready(() => {
             url: "/api/system/userGuide",
             success: function(response) {
                 $('#content').html(response);
+                $('.carousel').carousel()
             },
             error: function(xhr) {
                 console.log(xhr);
