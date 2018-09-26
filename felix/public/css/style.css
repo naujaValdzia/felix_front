@@ -58,7 +58,10 @@ span {
 
 table {
     width: 100%;
-    border: 1px dotted darkgrey;
+    border: 1px solid darkgrey;
+    border-radius: 5px;
+    border-collapse: collapse;
+    overflow: hidden;
 }
 
 th, td {

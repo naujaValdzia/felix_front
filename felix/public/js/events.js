@@ -196,60 +196,10 @@ $(document).ready(() => {
     });
 
     $("#btnReport").on('click', function( event ) {
-        let fValid = true;
-        event.preventDefault();
+
         let whichButton = $(".active").attr('id');
 
-        //Validation
-        if ($('.systems-select-active').attr("sysName") === undefined) {
-            hideFeedback();
-            $('#invFeedbackSystem').show();
-            fValid = false;
-        };
-        
-        if ($('#inpName').val() === "") {
-            hideFeedback();
-            $('#invFeedbackName').show();
-            fValid = false;
-        };
-
-        if ($('.active-drp').val() === undefined) {
-            hideFeedback();
-            $('#invFeedbackType').show();
-            fValid = false;
-        };
-
-        if ($('.active-drp').val() === undefined && $('#inpName').val() === "") {
-            hideFeedback();
-            $('#invFeedbackTypeAndName').show();
-        };
-
-        if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "") {
-            hideFeedback();
-            $('#invFeedbackSystemAndName').show();
-        };
-
-        if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "" && $('.active-drp').val() === undefined) {
-            hideFeedback();
-            $('#invFeedbackNameSystemType').show();
-        };
-
-        if ($('.systems-select-active').attr("sysName") !== undefined && $('#inpName').val() !== "" && $('.active-drp').val() !== undefined) {
-            hideFeedback();
-        };
-
-        if(whichButton === "btn3" && $('.systems-select-active').attr("sysName") !== undefined){
-            $('#invFeedbackName').hide();
-            fValid = true;
-        }
-
-        if(whichButton === "btn3" && $('.systems-select-active').attr("sysName") === undefined){
-            $('#invFeedbackName').hide();
-            $('#invFeedbackSystemAndName').hide();
-            $('#invFeedbackSystem').show();
-        }
-        
-        if (fValid) {
+        if (validateReport(whichButton)) {
             $('.invalid-feedback').hide();
             if(whichButton === "btn1"){
                 $.ajax({
@@ -321,25 +271,7 @@ $(document).ready(() => {
     });
 
     $("#btnTree").on('click', function( event ) {
-        event.preventDefault();
-        let fValid = true;
-
-        if ($('#inpName').val() === "") {
-            hideFeedback();
-            $('#invFeedbackName').show();
-            fValid = false;
-        };
-        if ($('.systems-select-active').attr("sysName") === undefined) {
-            hideFeedback();
-            $('#invFeedbackSystem').show();
-            fValid = false;
-        };
-        if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "") {                
-            hideFeedback();
-            $('#invFeedbackSystemAndName').show();
-            fValid = false;
-        };
-        if (fValid) {
+        if (validateTree()) {
             $.ajax({
                 url: "/api/system/treeView",
                 method: 'PUT',
@@ -365,8 +297,94 @@ function hideFeedback() {
     $('#invFeedbackType').hide();
     $('#invFeedbackTypeAndName').hide();
     $('#invFeedbackNameSystemType').hide();
-    fValid = false;
 };
+
+function validateTree(){
+    event.preventDefault();
+    let fValid = true;
+
+    if ($('#inpName').val() === "") {
+        hideFeedback();
+        $('#invFeedbackName').show();
+        fValid = false;
+    };
+    if ($('.systems-select-active').attr("sysName") === undefined) {
+        hideFeedback();
+        $('#invFeedbackSystem').show();
+        fValid = false;
+    };
+    if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "") {                
+        hideFeedback();
+        $('#invFeedbackSystemAndName').show();
+        fValid = false;
+    };
+    if ($('.systems-select-active').attr("sysName") !== undefined && $('#inpName').val() !== "") {
+        hideFeedback();
+        fValid = true;
+    };
+    return fValid;
+}
+
+function validateReport(whichButton){
+
+    let fValid = true;
+    event.preventDefault();
+
+    if ($('.systems-select-active').attr("sysName") === undefined) {
+        hideFeedback();
+        $('#invFeedbackSystem').show();
+        fValid = false;
+    };
+    
+    if ($('#inpName').val() === "") {
+        hideFeedback();
+        $('#invFeedbackName').show();
+        fValid = false;
+    };
+
+    if ($('.active-drp').val() === undefined) {
+        hideFeedback();
+        $('#invFeedbackType').show();
+        fValid = false;
+    };
+
+    if ($('.active-drp').val() === undefined && $('#inpName').val() === "") {
+        hideFeedback();
+        $('#invFeedbackTypeAndName').show();
+        fValid = false;
+    };
+
+    if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "") {
+        hideFeedback();
+        $('#invFeedbackSystemAndName').show();
+        fValid = false;
+    };
+
+    if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "" && $('.active-drp').val() === undefined) {
+        hideFeedback();
+        $('#invFeedbackNameSystemType').show();
+        fValid = false;
+    };
+
+    if ($('.systems-select-active').attr("sysName") !== undefined && $('#inpName').val() !== "" && $('.active-drp').val() !== undefined) {
+        hideFeedback();
+        fValid = true;
+    };
+
+    if(whichButton === "btn3" && $('.systems-select-active').attr("sysName") !== undefined){
+        $('#invFeedbackName').hide();
+        fValid = true;
+    };
+
+    if(whichButton === "btn3" && $('.systems-select-active').attr("sysName") === undefined){
+        $('#invFeedbackName').hide();
+        $('#invFeedbackSystemAndName').hide();
+        $('#invFeedbackSystem').show();
+        fValid = false;
+    };
+
+    return fValid;
+}
 
 function fillDRopdwonType1(){
     $('.btn, .elements, .w-100').removeClass('active');
