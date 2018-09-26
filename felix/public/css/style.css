@@ -200,7 +200,7 @@ th {
     text-align: center!important;
 }
 
-tr:nth-child(even){background-color: #fcfcfc}
+tr:nth-child(even){background-color: #faf9f9!important}
 
 .btnDelete {
 	background-color: #4691f9;
@@ -237,4 +237,8 @@ tr:nth-child(even){background-color: #fcfcfc}
 .showFieldLine {
     display: inline;
     cursor: pointer;
+}
+
+tr{
+    background-color: white!important;
 }
