@@ -57,11 +57,11 @@ span {
 }
 
 table {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
     width: 100%;
-    border: 1px solid darkgrey;
-    border-radius: 5px;
-    border-collapse: collapse;
-    overflow: hidden;
+    border: 1px solid #343a40;
 }
 
 th, td {
@@ -73,12 +73,12 @@ th, td {
 }
 
 th {
-    border: 1px dotted darkgrey;
+    border: 1px solid darkgrey;
 }
 
 td {
-    border-left: 1px dotted darkgrey;
-    border-right: 1px dotted darkgrey;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
 }
 
 .t-high {
