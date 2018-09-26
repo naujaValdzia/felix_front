@@ -204,16 +204,19 @@ $(document).ready(() => {
         if ($('.systems-select-active').attr("sysName") === undefined) {
             hideFeedback();
             $('#invFeedbackSystem').show();
+            fValid = false;
         };
         
         if ($('#inpName').val() === "") {
             hideFeedback();
             $('#invFeedbackName').show();
+            fValid = false;
         };
 
         if ($('.active-drp').val() === undefined) {
             hideFeedback();
             $('#invFeedbackType').show();
+            fValid = false;
         };
 
         if ($('.active-drp').val() === undefined && $('#inpName').val() === "") {
@@ -229,6 +232,10 @@ $(document).ready(() => {
         if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "" && $('.active-drp').val() === undefined) {
             hideFeedback();
             $('#invFeedbackNameSystemType').show();
+        };
+
+        if ($('.systems-select-active').attr("sysName") !== undefined && $('#inpName').val() !== "" && $('.active-drp').val() !== undefined) {
+            hideFeedback();
         };
 
         if(whichButton === "btn3" && $('.systems-select-active').attr("sysName") !== undefined){
@@ -320,14 +327,17 @@ $(document).ready(() => {
         if ($('#inpName').val() === "") {
             hideFeedback();
             $('#invFeedbackName').show();
+            fValid = false;
         };
         if ($('.systems-select-active').attr("sysName") === undefined) {
             hideFeedback();
             $('#invFeedbackSystem').show();
+            fValid = false;
         };
         if ($('.systems-select-active').attr("sysName") === undefined && $('#inpName').val() === "") {                
             hideFeedback();
             $('#invFeedbackSystemAndName').show();
+            fValid = false;
         };
         if (fValid) {
             $.ajax({
