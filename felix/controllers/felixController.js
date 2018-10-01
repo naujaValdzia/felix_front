@@ -1,4 +1,5 @@
 const request = require('request');
+const config = require('../config');
 
 exports.showIndex = function (request, response) {
     response.render('index', {})
@@ -10,7 +11,7 @@ exports.showUserGuide = function (req, res) {
 
 exports.showError = function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/error/getError`,
+      url: `${config.API_URL}error/getError`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -25,9 +26,9 @@ exports.showError = function (req, res) {
     });
   };
 
-  exports.editSystem = function (req, res) {
+  exports.getEditSystemForm = function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/details`,
+      url: `${config.API_URL}info/details`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -51,7 +52,7 @@ exports.showError = function (req, res) {
     let entryPoints = req.body.entryPoints.replace(/\\/g, "/");
   
     const options = {
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/update`,
+      url: `${config.API_URL}info/update`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -68,7 +69,7 @@ exports.showError = function (req, res) {
 
   exports.getSystemsList =  function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/list`,
+      url: `${config.API_URL}info/list`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -94,7 +95,7 @@ exports.showError = function (req, res) {
     let entryPoints = req.body.entryPoints.replace(/\\/g, "/");
   
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/create`,
+      url: `${config.API_URL}info/create`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -111,7 +112,7 @@ exports.showError = function (req, res) {
 
   exports.showFileReport = function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getFile`,
+      url: `${config.API_URL}file/getFile`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -128,7 +129,7 @@ exports.showError = function (req, res) {
 
   exports.showFileDetailedReport = function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getFileDetail`,
+      url: `${config.API_URL}file/getFileDetail`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -145,7 +146,7 @@ exports.showError = function (req, res) {
 
   exports.showFieldReport =  function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbField`,
+      url: `${config.API_URL}dbField/getDbField`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -162,7 +163,7 @@ exports.showError = function (req, res) {
 
   exports.showFieldDetailedReport =  function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/dbField/getDbFieldDetail`,
+      url: `${config.API_URL}dbField/getDbFieldDetail`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -179,7 +180,7 @@ exports.showError = function (req, res) {
 
   exports.showUnusedReport = function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/unused/getUnused`,
+      url: `${config.API_URL}unused/getUnused`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -196,7 +197,7 @@ exports.showError = function (req, res) {
 
   exports.deleteSystem =  function (req, res) {
     const options = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/info/delete`,
+      url: `${config.API_URL}info/delete`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -213,7 +214,7 @@ exports.showError = function (req, res) {
 
 exports.showTreeView = function (req, res) {
     const optionsUsedBy = {  
-      url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getUsedByBranch`,
+      url: `${config.API_URL}file/getUsedByBranch`,
       method: 'PUT',
       headers: {
           'Accept': 'application/json',
@@ -223,7 +224,7 @@ exports.showTreeView = function (req, res) {
       body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
     };
     const optionsIsUsing = {  
-        url: `http://paceviciusp.baltic-amadeus.lt:8880/felix/web/pdo/system/file/getIsUsingBranch`,
+        url: `${config.API_URL}file/getIsUsingBranch`,
         method: 'PUT',
         headers: {
             'Accept': 'application/json',
@@ -234,17 +235,17 @@ exports.showTreeView = function (req, res) {
       };
     
       request(optionsUsedBy, function(err, apiResponse, body) {
-        let json1 = JSON.parse(body);
+        let usedByjson = JSON.parse(body);
     
         request(optionsIsUsing, function(err, apiResponse, body) {
-          let json = JSON.parse(body);
+          let isUsingJson = JSON.parse(body);
           
-          let usedBy = { usedBy: json1.response.dsTree };
-          let isUsing = { isUsing: json.response.dsTree };
+          let usedBy = { usedBy: usedByjson.response.dsTree };
+          let isUsing = { isUsing: isUsingJson.response.dsTree };
     
-          let test = Object.assign(usedBy, isUsing);
+          let combinedJson = Object.assign(usedBy, isUsing);
                 
-          res.render('treeView', test);
+          res.render('treeView', combinedJson);
         });
         
       })

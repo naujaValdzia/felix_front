@@ -4,14 +4,7 @@ const app = express();
 const handlebars = require('express-handlebars');
 const request = require('request');
 const bodyparser = require('body-parser');
-
-//Classes
-class Api{
-  constructor(){
-  }
-  GetForm(req){
-  }
-}
+const catalogRouter = require('./routes/catalog'); 
 
 app.engine('handlebars', handlebars({
   partialsDir: 'views',
@@ -41,6 +34,6 @@ app.listen(3000 , function (){
   console.log('THE SERVER IS UP AND RUNNING!')
 });
 
-var catalogRouter = require('./routes/catalog'); 
+
 app.use('/', catalogRouter);
 
