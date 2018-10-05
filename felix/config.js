@@ -5,7 +5,7 @@ const env = process.env.NODE_ENV; // 'dev' or 'test'
 
 const serverpath = {
  url: {
-   host: 'localhost',
+   host: 'http://localhost',
    port: 4520
  }
 };
