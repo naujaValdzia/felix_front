@@ -3,7 +3,7 @@ const router = express.Router();
 
 const felix_controller = require('../controllers/felixController');
 
-router.get('/felix', felix_controller.showIndex);
+router.get('/', felix_controller.showIndex);
 
 router.get('/api/system/userGuide', felix_controller.showUserGuide);
 
