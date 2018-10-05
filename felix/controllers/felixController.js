@@ -39,8 +39,7 @@ exports.showError = function (req, res) {
     };
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
-      let system = json.response.dsSystem.dsSystem.ttSystem[0];
-      res.render('editSystem', system);
+      res.render('editSystem', json);
     });
   };
 

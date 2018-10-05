@@ -1,21 +1,21 @@
 <div class="form-holder">
     <form>
-        <h3>Update system <span class="refName">{{systemName}}</span> for xref processing</h3>
+        <h3>Update system <span class="refName">{{response.dsSystem.dsSystem.ttSystem.systemName}}</span> for xref processing</h3>
         <label for="sysName">Name:</label>
         <input id="sysName" type="text" class="form-control"
-            name="sysName" value= "{{systemName}}" placeholder="please enter system name" title="This field is read-only. You cannot edit system name." readonly>
+            name="sysName" value= "{{response.dsSystem.dsSystem.ttSystem.systemName}}" placeholder="please enter system name" title="This field is read-only. You cannot edit system name." readonly>
         <label for="sysPath">Path:</label>
         <textarea id="sysPath" type="text" class="form-control"
-            name="sysPath" placeholder="please enter system source path">{{localSourcePath}}</textarea>
+            name="sysPath" placeholder="please enter system source path">{{response.dsSystem.dsSystem.ttSystem.localSourcePath}}</textarea>
         <label for="sysPropath">Propath:</label>
         <textarea id="sysPropath" type="text" class="form-control"
-            name="sysPropath" placeholder="please enter system propath">{{{systemPropath}}}</textarea>
+            name="sysPropath" placeholder="please enter system propath">{{{response.dsSystem.dsSystem.ttSystem.systemPropath}}}</textarea>
         <label for="dbPar">Database .df and .st path:</label>
         <textarea id="dbPar" type="text" class="form-control"
-            name="dbPar" placeholder="please enter system database parameters">{{systemDBparameters}}</textarea>
+            name="dbPar" placeholder="please enter system database parameters">{{response.dsSystem.dsSystem.ttSystem.systemDBparameters}}</textarea>
         <label for="entryPoint">Entry points:</label>
         <textarea id="entryPoint" type="text" class="form-control"
-            name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas">{{entryPoints}}</textarea>
+            name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas">{{response.dsSystem.dsSystem.ttSystem.entryPoints}}</textarea>
         
         <small id="note" class="form-text text-muted">
         <strong>Note! You can enter up to 100 entry points and they have to be separated by commas.</strong>
@@ -23,7 +23,7 @@
 
         <input type="hidden" name="updSystem" value="add">
 
-        <input type="hidden" name="oldName" value= {{systemName}}>
+        <input type="hidden" name="oldName" value= {{response.dsSystem.dsSystem.ttSystem.systemName}}>
         <div class="button-holder d-flex justify-content-between">
             <input class="btn btn-dark" id="upd" type="submit" value="Update">
             <button type="button" class="btn btnDelete" data-toggle="modal"
@@ -37,13 +37,13 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                <h5 class="modal-title" id="delModalLabel">Delete system {{systemName}}</h5>
+                <h5 class="modal-title" id="delModalLabel">Delete system {{response.dsSystem.dsSystem.ttSystem.systemName}}</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Delete system {{systemName}} and all it's data from Felix?
+                Delete system {{response.dsSystem.dsSystem.ttSystem.systemName}} and all it's data from Felix?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
