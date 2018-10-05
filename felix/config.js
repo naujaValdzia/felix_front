@@ -5,8 +5,8 @@ const env = process.env.NODE_ENV; // 'dev' or 'test'
 
 const serverpath = {
  url: {
-   host: 'http://paceviciusp.baltic-amadeus.lt',
-   port: 8880
+   host: 'localhost',
+   port: 4520
  }
 };
 
