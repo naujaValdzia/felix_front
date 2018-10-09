@@ -38,7 +38,6 @@ exports.showError = function (req, res) {
       body: `{"request": {"pcSystem": "${req.body.pcSystem}"}}`
     };
     request(options, function(err, apiResponse, body) {
-      console.log(body);
       let json = JSON.parse(body);
       res.render('editSystem', json);
     });
