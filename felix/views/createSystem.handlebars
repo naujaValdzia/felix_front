@@ -1,24 +1,32 @@
 <div class="form-holder">
-    <form>
-        <h3>Add new system for xref processing</h3>
-        <label for="sysName">Name:</label>
-        <input id="sysName" type="text" class="form-control"
-            name="sysName" placeholder="please enter system name, up to 50 characters" size="80" maxlength="50"> 
-        <label for="sysPath">Path:</label>
-        <textarea id="sysPath" type="text" class="form-control"
-            name="sysPath" placeholder="please enter system source path"></textarea>
-        <label for="sysPropath">Propath:</label>
-        <textarea id="sysPropath" type="text" class="form-control"
-            name="sysPropath" placeholder="please enter system propath"></textarea>
-        <label for="dbPar">Database .df and .st path:</label>
-        <textarea id="dbPar" type="text" class="form-control"
-            name="dbPar" placeholder="please enter system database parameters"></textarea>
-        <label for="entryPoint">Entry points:</label>
-        <textarea id="entryPoint" type="text" class="form-control"
-            name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas"></textarea>
-        <input type="hidden" name="updSystem" value="add">
-        <div class="button-holder d-flex justify-content-between">
-            <input class="btn btn-dark" id="addSys" type="submit" value="Add">
+    <h3>Add new system for xref processing</h3>
+
+    <div class="alert alert-warning" style="background-color:rgb(239, 246, 248);">
+        <div class="row">
+            <span class="col-3">
+                <img class="notifications" src="notif-bell.png">
+                <b>ATTENTION!</b>
+            </span>
+            <div class="col-9">Propath delimiter is colon ":", others - comma ",". If you use different symbols as delimiters, it will be automatically replaced before writing data to Felix database.</div>
         </div>
-    </form>
+    </div>
+    <label for="sysName">Name:</label>
+    <input id="sysName" type="text" class="form-control"
+        name="sysName" placeholder="please enter system name, up to 50 characters" size="80" maxlength="50"> 
+    <label for="sysPath">Path:</label>
+    <textarea id="sysPath" type="text" class="form-control"
+        name="sysPath" placeholder="please enter system source path"></textarea>
+    <label for="sysPropath">Propath:</label>
+    <textarea id="sysPropath" type="text" class="form-control"
+        name="sysPropath" placeholder="please enter system propath"></textarea>
+    <label for="dbPar">Database .df and .st path:</label>
+    <textarea id="dbPar" type="text" class="form-control"
+        name="dbPar" placeholder="please enter system database parameters"></textarea>
+    <label for="entryPoint">Entry points:</label>
+    <textarea id="entryPoint" type="text" class="form-control"
+        name="entryPoint" placeholder="please enter up to 100 entry points, separate by commas"></textarea>
+    <input type="hidden" name="updSystem" value="add">
+    <div class="button-holder d-flex justify-content-between">
+        <input class="btn btn-dark" id="addSys" type="submit" value="Add">
+    </div>
 </div>  
