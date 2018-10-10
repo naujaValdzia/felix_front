@@ -18,11 +18,11 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': 'application/json; charset=UTF-8'
       },
-      body: `{"request": {"systemName": "${req.body.systemName}"}}`
+      body: `{"request": {"systemName": "${req.query.systemName}"}}`
     };
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
-      res.render('errorList', json);
+      res.render('../views/errorList', json);
     });
   };
 
@@ -35,10 +35,11 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcSystem": "${req.body.pcSystem}"}}`
+      body: `{"request": {"pcSystem": "${req.query.pcSystem}"}}`
     };
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
+      //console.log(json);
       res.render('editSystem', json);
     });
   };
@@ -62,6 +63,7 @@ exports.showError = function (req, res) {
     }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
+      console.log(json);
       res.render('notification', json);
     });
   };
@@ -118,7 +120,7 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}","pcType": "${req.body.pcType}"}}`
+      body: `{"request": {"pcSystem": "${req.query.pcSystem}","pcFileName": "${req.query.pcFileName}","pcType": "${req.query.pcType}"}}`
       }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
@@ -135,7 +137,7 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcCompileUnit": "${req.body.pcCompileUnit}", "pcSystem": "${req.body.pcSystem}","pcType": "${req.body.pcType}","pcFileName": "${req.body.pcFileName}"}}`
+      body: `{"request": {"pcCompileUnit": "${req.query.pcCompileUnit}", "pcSystem": "${req.query.pcSystem}","pcType": "${req.query.pcType}","pcFileName": "${req.query.pcFileName}"}}`
       }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
@@ -152,7 +154,7 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
+      body: `{"request": {"pcSystem": "${req.query.pcSystem}","pcDbFieldName": "${req.query.pcDbFieldName}","pcType": "${req.query.pcType}"}}`
       }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
@@ -169,7 +171,7 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcCompileUnit": "${req.body.pcCompileUnit}", "pcSystem": "${req.body.pcSystem}","pcDbFieldName": "${req.body.pcDbFieldName}","pcType": "${req.body.pcType}"}}`
+      body: `{"request": {"pcCompileUnit": "${req.query.pcCompileUnit}", "pcSystem": "${req.query.pcSystem}","pcDbFieldName": "${req.query.pcDbFieldName}","pcType": "${req.query.pcType}"}}`
       }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
@@ -186,7 +188,7 @@ exports.showError = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcType": "${req.body.pcType}"}}`
+      body: `{"request": {"pcSystem": "${req.query.pcSystem}","pcType": "${req.query.pcType}"}}`
       }
     request(options, function(err, apiResponse, body) {
       let json = JSON.parse(body);
@@ -220,7 +222,7 @@ exports.showTreeView = function (req, res) {
           'Accept-Charset': 'utf-8',
           'Content-Type': ' application/json; charset=UTF-8'
       },
-      body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+      body: `{"request": {"pcSystem": "${req.query.pcSystem}","pcFileName": "${req.query.pcFileName}"}}`
     };
     const optionsIsUsing = {  
         url: `${config.API_URL}file/getIsUsingBranch`,
@@ -230,7 +232,7 @@ exports.showTreeView = function (req, res) {
             'Accept-Charset': 'utf-8',
             'Content-Type': ' application/json; charset=UTF-8'
         },
-        body: `{"request": {"pcSystem": "${req.body.pcSystem}","pcFileName": "${req.body.pcFileName}"}}`
+        body: `{"request": {"pcSystem": "${req.query.pcSystem}","pcFileName": "${req.query.pcFileName}"}}`
       };
     
       request(optionsUsedBy, function(err, apiResponse, body) {

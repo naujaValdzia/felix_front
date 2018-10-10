@@ -100,7 +100,7 @@ $(document).ready(() => {
 
         $.ajax({
             url: "api/error",
-            method: 'PUT',
+            method: 'GET',
             data: {
                 "systemName": $(this).attr("sysName")
             },
@@ -117,7 +117,7 @@ $(document).ready(() => {
         event.preventDefault();
         $.ajax({
             url: "api/system/edit",
-            method: 'PUT',
+            method: 'GET',
             data: {"pcSystem": $(this).attr("sysName")},
             success: function(response) {
                 $('#content').html(response);
@@ -152,7 +152,7 @@ $(document).ready(() => {
 
         $.ajax({
             url: "/api/system/fileReportDetail",
-            method: 'PUT',
+            method: 'GET',
             data: {
                     "pcCompileUnit": document.getElementById(id).getAttribute("value"),
                     "pcSystem": $('.systems-select-active').attr("sysName"),
@@ -177,7 +177,7 @@ $(document).ready(() => {
 
         $.ajax({
             url: "/api/system/fieldDetailedReport",
-            method: 'PUT',
+            method: 'GET',
             data: {
                     "pcCompileUnit": document.getElementById(id).getAttribute("value"),
                     "pcSystem": $('.systems-select-active').attr("sysName"),
@@ -204,7 +204,7 @@ $(document).ready(() => {
             if(whichButton === "btn1"){
                 $.ajax({
                     url: "/api/system/fileReport",
-                    method: 'PUT',
+                    method: 'GET',
                     data: {
                             "pcSystem": $('.systems-select-active').attr("sysName"),
                             "pcFileName": $('#inpName').val(),
@@ -222,7 +222,7 @@ $(document).ready(() => {
             else if(whichButton === "btn2"){
                 $.ajax({
                     url: "/api/system/fieldReport",
-                    method: 'PUT',
+                    method: 'GET',
                     data: {
                             "pcSystem": $('.systems-select-active').attr("sysName"),
                             "pcDbFieldName": $('#inpName').val(),
@@ -240,7 +240,7 @@ $(document).ready(() => {
             else if(whichButton === "btn3"){
                 $.ajax({
                     url: "/api/system/unusedReport",
-                    method: 'PUT',
+                    method: 'GET',
                     data: {
                             "pcSystem": $('.systems-select-active').attr("sysName"),
                             "pcType": $('.active-drp').val()
@@ -275,7 +275,7 @@ $(document).ready(() => {
         if (validateTree()) {
             $.ajax({
                 url: "/api/system/treeView",
-                method: 'PUT',
+                method: 'GET',
                 data: {
                     "pcSystem": $('.systems-select-active').attr("sysName"),
                     "pcFileName": $('#inpName').val()

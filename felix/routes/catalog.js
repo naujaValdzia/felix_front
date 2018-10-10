@@ -7,9 +7,9 @@ router.get('/', felix_controller.showIndex);
 
 router.get('/api/system/userGuide', felix_controller.showUserGuide);
 
-router.put('/api/error', felix_controller.showError);
+router.get('/api/error', felix_controller.showError);
 
-router.put('/api/system/edit', felix_controller.getEditSystemForm);
+router.get('/api/system/edit', felix_controller.getEditSystemForm);
 
 router.put('/api/system/update', felix_controller.updateSystem);
 
@@ -19,18 +19,18 @@ router.get('/api/system/add', felix_controller.showAddForm);
 
 router.post('/api/system/add', felix_controller.addSystem);
 
-router.put('/api/system/fileReport', felix_controller.showFileReport);
+router.get('/api/system/fileReport', felix_controller.showFileReport);
 
-router.put('/api/system/fileReportDetail', felix_controller.showFileDetailedReport);
+router.get('/api/system/fileReportDetail', felix_controller.showFileDetailedReport);
 
-router.put('/api/system/fieldReport', felix_controller.showFieldReport);
+router.get('/api/system/fieldReport', felix_controller.showFieldReport);
 
-router.put('/api/system/fieldDetailedReport', felix_controller.showFieldDetailedReport);
+router.get('/api/system/fieldDetailedReport', felix_controller.showFieldDetailedReport);
 
-router.put('/api/system/unusedReport', felix_controller.showUnusedReport);
+router.get('/api/system/unusedReport', felix_controller.showUnusedReport);
 
 router.put('/api/system/delete', felix_controller.deleteSystem);
 
-router.put('/api/system/treeView', felix_controller.showTreeView);
+router.get('/api/system/treeView', felix_controller.showTreeView);
 
 module.exports = router;
