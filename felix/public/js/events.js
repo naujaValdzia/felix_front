@@ -50,6 +50,12 @@ $(document).ready(() => {
             },
             success: function(response) {
                 $('#content').html(response);
+                $.ajax({
+                    url: "api/system",
+                    method: 'GET',
+                    success: function(response) {
+                    $('#System-row').html(response);
+                    }});
             },
             error: function(xhr) {
                 console.log(xhr);
