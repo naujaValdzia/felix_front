@@ -12,19 +12,19 @@
         </div>
         <label for="sysName">Name:</label>
         <input id="sysName" type="text" class="form-control"
-            name="sysName" placeholder="Please enter system name" size="80" maxlength="50"> 
+            name="sysName" value= "{{systemName}}" title="This field is read-only. You cannot edit system name." readonly>
         <label for="sysPath">Path:</label>
         <textarea id="sysPath" type="text" class="form-control"
-            name="sysPath" placeholder="Please enter system source path, e.g. SYSTEMFOLDER/trunk" maxlength="500"></textarea>
+            name="sysPath" placeholder="Please enter system source path, e.g. SYSTEMFOLDER/trunk" maxlength="500">{{localSourcePath}}</textarea>
         <label for="sysPropath">Propath:</label>
         <textarea id="sysPropath" type="text" class="form-control"
-            name="sysPropath" placeholder="Please enter system propath, e.g. SYSTEMFOLDER/trunk/structures:SYSTEMFOLDER/trunk/integration" maxlength="500"></textarea>
+            name="sysPropath" placeholder="Please enter system propath, e.g. SYSTEMFOLDER/trunk/structures:SYSTEMFOLDER/trunk/integration" maxlength="500">{{{systemPropath}}}</textarea>
         <label for="dbPar">Database .df and .st path:</label>
         <textarea id="dbPar" type="text" class="form-control"
-            name="dbPar" placeholder="Please enter system database parameters, e.g. SYSTEMFOLDER/trunk/structures" maxlength="500"></textarea>
+            name="dbPar" placeholder="Please enter system database parameters, e.g. SYSTEMFOLDER/trunk/structures" maxlength="500">{{systemDBparameters}}</textarea>
         <label for="entryPoint">Entry points:</label>
         <textarea id="entryPoint" type="text" class="form-control"
-            name="entryPoint" placeholder="Please enter up to 100 entry points" maxlength="500"></textarea>        
+            name="entryPoint" placeholder="Please enter up to 100 entry points" maxlength="500">{{entryPoints}}</textarea>        
         <small id="note" class="form-text text-muted">
         <strong>Note! You can enter up to 100 entry points and they have to be separated by commas.</strong>
         </small>  
