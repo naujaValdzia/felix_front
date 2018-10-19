@@ -1,6 +1,7 @@
 $(document).ready(() => {
     $('#small-dropdown').hide();
     $('#big-dropdown').hide();
+    $('#btnTree').hide();
     $.ajax({
         url: "api/system",
         method: 'GET',
@@ -87,15 +88,18 @@ $(document).ready(() => {
     });
 
     $('#btn1').on('click', function() {
+        $('#btnTree').show();
         fillDRopdwonType1();
         $('#btn1').addClass('active');
     });
     $('#btn2').on('click', function() {
+        $('#btnTree').hide();
         fillDRopdwonType2();
         $('#btn2').addClass('active');
     });
     $('#btn3').on('click', function() {
-        fillDRopdwonType1()
+        $('#btnTree').hide();
+        fillDRopdwonType1();
         $('#btn3').addClass('active');
     });
 
